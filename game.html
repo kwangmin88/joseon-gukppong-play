@@ -3956,6 +3956,25 @@ button:focus-visible {
 .jo-auto.jo-rice:disabled {
   opacity: .45;
 }
+.jo-zoom {
+  display: flex;
+  gap: 5px;
+  justify-content: flex-end;
+  pointer-events: auto;
+}
+.jo-zoom button {
+  width: 34px;
+  height: 30px;
+  padding: 0;
+  font-family: inherit;
+  font-size: 18px;
+  font-weight: 800;
+  line-height: 1;
+  color: #e9dcc0;
+  background: #1b2824e6;
+  border: 1px solid #6e8066;
+  border-radius: 6px;
+}
 
 </style>
 </head>
@@ -11418,6 +11437,8 @@ button:focus-visible {
     { id: "tornado", name: "\uD68C\uC624\uB9AC\uCC3D", tag: "\uBB34\uACF5", rank: 4, cd: 16, desc: (l) => `${(2.4 + l * 0.3).toFixed(1)}\uCD08 \uB3D9\uC548 \uCC3D\uC744 \uB3CC\uB9AC\uBA70 \uC6C0\uC9C1\uC778\uB2E4 \u2014 0.2\uCD08\uB9C8\uB2E4 \uB458\uB808\uC758 \uC65C\uAD70 ${4 + l}\uBA85\uC5D0\uAC8C \uACF5\uACA9\uC758 ${Math.round((0.45 + l * 0.05) * 100)}%` },
     { id: "five", name: "\uC624\uC5F0\uCC3D", tag: "\uBB34\uACF5", rank: 2, cd: 10, desc: (l) => `\uC55E\uC73C\uB85C \uB2E4\uC12F \uBC88 \uC5F0\uB2EC\uC544 \uCC0C\uB978\uB2E4 \u2014 \uCC3D \uAE38\uC774 \uC548\uC758 \uC65C\uAD70 ${2 + Math.floor(l / 2)}\uBA85\uC529 \uAFF0\uB6AB\uACE0(\uACF5\uACA9\uC758 ${Math.round((0.8 + l * 0.1) * 100)}%), \uB9C8\uC9C0\uB9C9 \uD55C \uBC88\uC740 \uB450 \uBC30\uB85C \uBC00\uCCD0 \uB0B8\uB2E4` },
     { id: "crescent", name: "\uBC18\uC6D4\uCC38", tag: "\uBB34\uACF5", rank: 7, cd: 18, desc: (l) => `\uCC3D\uC744 \uD55C \uBC14\uD034 \uD06C\uAC8C \uD718\uB458\uB7EC \uB458\uB808\uC758 \uC65C\uAD70 ${8 + l * 2}\uBA85\uC744 \uBA40\uB9AC \uB0A0\uB824 \uBCF4\uB0B8\uB2E4 (\uACF5\uACA9\uC758 ${Math.round((2 + l * 0.3) * 100)}%, \uC7A0\uAE50 \uAD73\uD78C\uB2E4)` },
+    // [Claude 수정 · 2026-10-11] 형님 지시 '창 날리는 기술'. (같이 말한 휠윈드=회오리창 · 점프 내려찍기=도약 찍기 · 연속 찌르기=오연창·난무 는 이미 있다)
+    { id: "throw", name: "\uD22C\uCC3D", tag: "\uBB34\uACF5", rank: 1, cd: 9, desc: (l) => `\uCC3D\uC744 \uB358\uC9C4\uB2E4 \u2014 \uB0A0\uC544\uAC00\uB294 \uAE38\uC758 \uC65C\uAD70 ${2 + l}\uBA85\uC744 \uAFF0\uB6AB\uACE0(\uACF5\uACA9\uC758 ${Math.round((2.2 + l * 0.35) * 100)}%), \uB5A8\uC5B4\uC9C4 \uC790\uB9AC\uC5D0\uC11C \uD130\uC838 \uB458\uB808\uB97C \uCE5C\uB2E4(60%)` },
     { id: "p_reach", name: "\uCC3D\uC220", tag: "\uC2EC\uBC95", passive: true, rank: 1, desc: (l) => `\uCC3D\uC774 \uB2FF\uB294 \uAC70\uB9AC +${l * 4}%` },
     { id: "p_guard", name: "\uD638\uC2E0", tag: "\uC2EC\uBC95", passive: true, rank: 3, desc: (l) => `\uB0B4\uAC00 \uBC1B\uB294 \uD53C\uD574 \u2212${l * 4}%` },
     { id: "p_loot", name: "\uC804\uB9AC\uD488 \uC548\uBAA9", tag: "\uC2EC\uBC95", passive: true, rank: 4, desc: (l) => `\uC7A5\uBE44\uAC00 \uB5A8\uC5B4\uC9C8 \uD655\uB960 +${l * 2}%p` },
@@ -11499,6 +11520,7 @@ button:focus-visible {
   var ACTS = {
     whirl: ["spin", 0.36, 1.5],
     crescent: ["spin", 0.5, 2.5],
+    throw: ["lunge", 0.3],
     pierce: ["lunge", 0.36],
     five: ["lunge", 0.66],
     flurry: ["lunge", 0.6],
@@ -11748,6 +11770,43 @@ button:focus-visible {
       sfx("skHorse", 1, 0.04);
       return true;
     },
+    throw(l, p, atk) {
+      const all = foesNear(p.x, p.y, 11);
+      if (!all.length) return false;
+      const t = all[Math.min(all.length - 1, Math.floor(all.length * 0.6))];
+      const [dx, dy] = toward(p, t), len = Math.min(11, Math.hypot(t.x - p.x, t.y - p.y) + 1.5), ex = p.x + dx * len, ey = p.y + dy * len;
+      p.fx = dx;
+      p.fy = dy;
+      ghost(p, 0.3);
+      sfx("heavySwing", 1);
+      sfx("skDash", 0.8, 0.04);
+      const row = S.W.filter((u) => {
+        const rx = u.x - p.x, ry = u.y - p.y, al = rx * dx + ry * dy;
+        return !u.dead && al > 0.2 && al < len && Math.abs(rx * dy - ry * dx) < 0.8 + u.r;
+      }).sort((a, b) => (a.x - p.x) * dx + (a.y - p.y) * dy - ((b.x - p.x) * dx + (b.y - p.y) * dy)).slice(0, 2 + l);
+      const steps = 6;
+      for (let k = 0; k < steps; k++) later.push({ t: k * 0.03, run: () => {
+        const q = (k + 1) / steps, x = p.x + dx * len * q, y = p.y + dy * len * q;
+        thrust(x - dx * 1.6, y - dy * 1.6 + 0.9, dx, dy, 1.9, "#ffe9a8", 1.4);
+        embers(x, y + 0.8, -dx, -dy, "#ffd35c", 2);
+      } });
+      for (const u of row) {
+        const al = (u.x - p.x) * dx + (u.y - p.y) * dy;
+        later.push({ t: 0.03 * steps * (al / len), run: () => strike(u, atk * (2.2 + l * 0.35), dx, dy, 10, 1.5) });
+      }
+      later.push({ t: 0.03 * steps + 0.02, run: () => {
+        for (const u of foesNear(ex, ey, 1.9).slice(0, 6)) {
+          const [bx, by] = toward({ x: ex, y: ey }, u);
+          strike(u, atk * 0.6, bx, by, 12);
+        }
+        ring(ex, ey, 0.3, 1.9, "rgba(255,220,120,0.9)", 0.3);
+        dust(ex, ey, dx, dy, 8);
+        shake(0.3, 0.25);
+        hitStop(0.06);
+        sfx("heavyHit", 0.9);
+      } });
+      return true;
+    },
     dragon(l, p, atk) {
       const near2 = foesNear(p.x, p.y, 10)[0];
       if (!near2) return false;
@@ -11916,6 +11975,7 @@ button:focus-visible {
     behead: (p) => !!bossNear(p, 5) || foesNear(p.x, p.y, 3).length >= 1,
     cavalry: () => S.line.frontCount >= 5,
     dragon: (p) => foesNear(p.x, p.y, 8).length >= 4,
+    throw: (p) => foesNear(p.x, p.y, 10).length >= 3,
     whirl: (p) => foesNear(p.x, p.y, 2.5).length >= 2,
     pierce: (p) => p.hp > p.maxHp * 0.5 && foesNear(p.x, p.y, 4).length >= 2,
     cry: () => {
@@ -12212,7 +12272,19 @@ button:focus-visible {
         sfx("click", 0.5, 0);
       }
     });
-    side.append(autoBtn, orderBtn, riceBtn, baseAlert);
+    const zoomRow = el("div", "jo-zoom"), zIn = el("button", null, "+"), zOut = el("button", null, "\u2212");
+    zIn.setAttribute("aria-label", "\uD655\uB300");
+    zOut.setAttribute("aria-label", "\uCD95\uC18C");
+    zIn.addEventListener("click", () => {
+      sfx("click", 0.5, 0);
+      api.zoomBy(1.15);
+    });
+    zOut.addEventListener("click", () => {
+      sfx("click", 0.5, 0);
+      api.zoomBy(1 / 1.15);
+    });
+    zoomRow.append(zOut, zIn);
+    side.append(autoBtn, orderBtn, riceBtn, zoomRow, baseAlert);
     const skillBar = el("div", "jo-skills");
     const skillBtns = SKILLS.map((k) => {
       const b = el("button", "jo-skill " + (k.tag === "\uAD70\uB839" ? "order" : "art")), mask = el("i");
@@ -13553,12 +13625,23 @@ button:focus-visible {
     S.run = { kills: 0, wave: 0, stage: 1, collapsed: false, boss: false };
     let W = 960, H = 540, px = 43, dpr = 1, quality = 1;
     const PIXEL_BUDGET = 22e5;
+    const ZOOM_MIN = 0.7, ZOOM_MAX = 1.6;
+    let zoom = Math.max(ZOOM_MIN, Math.min(ZOOM_MAX, S.save && S.save.zoom || 1));
+    function setZoom(z) {
+      z = Math.max(ZOOM_MIN, Math.min(ZOOM_MAX, z));
+      if (Math.abs(z - zoom) < 1e-3) return zoom;
+      zoom = z;
+      px = H / VIEW_H * zoom;
+      S.viewHalfW = W / px / 2;
+      if (S.save) S.save.zoom = Math.round(zoom * 100) / 100;
+      return zoom;
+    }
     function resize() {
       dpr = Math.min(window.devicePixelRatio || 1, 2);
       dpr = Math.max(1, Math.min(dpr, Math.sqrt(PIXEL_BUDGET / Math.max(1, window.innerWidth * window.innerHeight)))) * quality;
       W = Math.max(1, Math.round(window.innerWidth * dpr));
       H = Math.max(1, Math.round(window.innerHeight * dpr));
-      px = H / VIEW_H;
+      px = H / VIEW_H * zoom;
       S.viewHalfW = W / px / 2;
       world.width = W;
       world.height = H;
@@ -13579,6 +13662,39 @@ button:focus-visible {
       const wx = (e.clientX * dpr - W / 2) / px + S.cam.x, wy = S.cam.y - (e.clientY * dpr - H / 2) / px;
       if (Math.abs(wx - p.x) < 0.9 && wy > p.y - 0.5 && wy < p.y + BODY + 0.5) ui.openSheet();
     });
+    world.addEventListener("wheel", (e) => {
+      e.preventDefault();
+      setZoom(zoom * (e.deltaY < 0 ? 1.08 : 1 / 1.08));
+    }, { passive: false });
+    {
+      const pts = /* @__PURE__ */ new Map();
+      let d0 = 0, z0 = 1;
+      const dist = () => {
+        const [a, b] = [...pts.values()];
+        return Math.hypot(a.x - b.x, a.y - b.y);
+      };
+      world.addEventListener("pointerdown", (e) => {
+        pts.set(e.pointerId, { x: e.clientX, y: e.clientY });
+        if (pts.size === 2) {
+          d0 = dist();
+          z0 = zoom;
+        }
+      });
+      world.addEventListener("pointermove", (e) => {
+        if (!pts.has(e.pointerId)) return;
+        pts.set(e.pointerId, { x: e.clientX, y: e.clientY });
+        if (pts.size === 2 && d0 > 10) setZoom(z0 * dist() / d0);
+      });
+      const up = (e) => {
+        if (pts.delete(e.pointerId) && pts.size < 2 && d0) {
+          d0 = 0;
+          writeSave(S.save);
+        }
+      };
+      world.addEventListener("pointerup", up);
+      world.addEventListener("pointercancel", up);
+      world.addEventListener("pointerleave", up);
+    }
     const RICE_N = 3, RICE_HEAL = 0.4, RICE_CD = 8;
     function eatRice() {
       const P = S.player, R = S.rice;
@@ -13659,6 +13775,12 @@ button:focus-visible {
         applyAuto();
       },
       eatRice,
+      zoomBy(k) {
+        const z = setZoom(zoom * k);
+        writeSave(S.save);
+        return z;
+      },
+      // [Claude 수정 · 2026-10-11] + − 단추
       rankUp: doRankUp,
       bought(kind) {
         if (kind === "loot") ltTidy(S.save);
@@ -14209,7 +14331,7 @@ button:focus-visible {
         const tl = Math.hypot(tvx, tvy), k = tl > 1.4 ? 1.4 / tl : 1, a = 1 - Math.exp(-4 * dt);
         c.ax += (tvx * k - c.ax) * a;
         c.ay += (tvy * k - c.ay) * a;
-        const limitY = Math.max(0, MAP.h + 2.4 - VIEW_H / 2), L = S.line;
+        const limitY = Math.max(0, MAP.h + 2.4 - VIEW_H / zoom / 2), L = S.line;
         const wx = p.x + L.nx * 2 + c.ax, wy = clamp(p.y + L.ny * 1.2 + c.ay, -limitY, limitY);
         const w = 2 / 0.13, e = Math.exp(-w * dt);
         let d = c.x - wx, tmp = (c.vx + w * d) * dt;
