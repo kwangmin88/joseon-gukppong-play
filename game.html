@@ -4200,6 +4200,105 @@ button:focus-visible {
   border-radius: 6px;
   background: linear-gradient(#8a7447, #665635);
 }
+.jo-adbtn {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 7;
+  pointer-events: auto;
+  min-height: 40px;
+  padding: 8px 18px;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 800;
+  color: #10201a;
+  border: 2px solid #fff3c4;
+  border-radius: 22px;
+  background: linear-gradient(#ffe08a, #f0b84a);
+  box-shadow: 0 6px 18px #000a;
+}
+.jo-adbtn[hidden] {
+  display: none;
+}
+.jo-adbtn.revive {
+  top: 56%;
+  animation: jo-adpulse 1s ease-in-out infinite;
+}
+.jo-adbtn.retry {
+  top: calc(var(--top) + 46px);
+  font-size: 11.5px;
+  min-height: 34px;
+}
+.jo-adbtn.inline {
+  position: static;
+  transform: none;
+  width: 100%;
+  min-height: 32px;
+  font-size: 11.5px;
+  flex-shrink: 0;
+}
+@keyframes jo-adpulse {
+  50% {
+    transform: translateX(-50%) scale(1.06);
+  }
+}
+.jo-perk .reroll {
+  min-width: 0;
+  margin-top: 6px;
+  padding: 5px 12px;
+  font-size: 10.5px;
+  color: #10201a;
+  border-color: #fff3c4;
+  background: linear-gradient(#ffe08a, #f0b84a);
+  border-radius: 14px;
+}
+.jo-daily button.ad,
+.jo-offline button.ad {
+  color: #10201a;
+  border-color: #fff3c4;
+  background: linear-gradient(#ffe08a, #f0b84a);
+}
+.jo-daily button.ad {
+  grid-column: 3;
+  grid-row: 1 / 3;
+  opacity: 1;
+}
+.jo-daily {
+  grid-template-columns: minmax(0, 1fr) auto auto;
+}
+.jo-offline button.ad {
+  margin-left: 8px;
+}
+.jo-adtest {
+  position: fixed;
+  inset: 0;
+  z-index: 100000;
+  display: grid;
+  place-items: center;
+  background: #000c;
+}
+.jo-adtest > div {
+  padding: 26px 34px;
+  text-align: center;
+  border: 2px dashed #ffe08a;
+  border-radius: 10px;
+  background: #1b2824;
+  color: #ffe9a8;
+  font-family:
+    -apple-system,
+    "Apple SD Gothic Neo",
+    sans-serif;
+}
+.jo-adtest b {
+  display: block;
+  font-size: 18px;
+}
+.jo-adtest small {
+  display: block;
+  margin-top: 8px;
+  font-size: 12px;
+  color: #c0cabb;
+}
 
 </style>
 </head>
@@ -7164,6 +7263,16 @@ button:focus-visible {
     S.perkOffer = { keys: pick, t: 9 };
     return true;
   }
+  function perkReroll() {
+    if (!S.perkOffer) return false;
+    const keys2 = Object.keys(PERKS), pick = [];
+    while (pick.length < 3) {
+      const k = keys2[Math.floor(Math.random() * keys2.length)];
+      if (!pick.includes(k)) pick.push(k);
+    }
+    S.perkOffer = { keys: pick, t: 9, rerolled: true };
+    return true;
+  }
   function perkPick(k) {
     if (!S.perkOffer || !S.perkOffer.keys.includes(k)) return false;
     S.perks[k] = (S.perks[k] || 0) + 1;
@@ -7179,6 +7288,10 @@ button:focus-visible {
     if (k.leech) s.leech = Math.min(0.2, (s.leech || 0) + 0.02 * k.leech);
     if (k.crit) s.crit = Math.min(0.85, s.crit + 0.08 * k.crit);
     if (k.cdr) s.cdr = Math.min(0.6, (s.cdr || 0) + 0.1 * k.cdr);
+    if (k.ad) {
+      s.attack *= 1.3;
+      s.troopDamage = Math.round(s.troopDamage * 1.3);
+    }
     return s;
   }
   var TOWER_RANK = 2;
@@ -7210,6 +7323,17 @@ button:focus-visible {
     const stage = Math.max(1, d.stage || 1), k = Math.pow(1.09, stage - 1);
     return { coins: m.prize.coins ? Math.round(1500 * k) : 0, shards: m.prize.shards ? 40 + stage * 6 : 0, gem: m.prize.gem || 0 };
   }
+  var PACK_MAX = 3;
+  var packLeft = (d) => PACK_MAX - (ensureDaily(d).pack || 0);
+  function claimPack(d) {
+    const q = ensureDaily(d);
+    if ((q.pack || 0) >= PACK_MAX) return null;
+    q.pack = (q.pack || 0) + 1;
+    const stage = Math.max(1, d.stage || 1);
+    return { shards: 60 + stage * 8, coins: Math.round(2e3 * Math.pow(1.09, stage - 1)), gem: 1 };
+  }
+  var BOOST_SEC = 600;
+  var boostLeft = (d) => Math.max(0, Math.ceil(((d.boostUntil || 0) - Date.now()) / 1e3));
   function claimDaily(d, id) {
     const m = DAILIES.find((x2) => x2.id === id), q = ensureDaily(d);
     if (!m || q.got[id] || !dailyDone(d, m)) return null;
@@ -7882,6 +8006,10 @@ button:focus-visible {
       // [Claude 수정 · 2026-10-09] 심법 '통솔' · [2026-10-11] 모병(군영) · 병영(시설)
     }, pc, loot.cleave);
     applyPerks(out);
+    if ((d.boostUntil || 0) > Date.now()) {
+      out.supply *= 2;
+      out.gold = (out.gold || 0) + 1;
+    }
     out.sp = loot.sp || {};
     return out;
   }
@@ -13051,11 +13179,27 @@ button:focus-visible {
       openTab("land");
     });
     const riceBtn = el("button", "jo-auto jo-rice");
-    riceBtn.addEventListener("click", () => {
+    riceBtn.addEventListener("click", async () => {
       unlockAudio();
+      if (S.rice && S.rice.n <= 0 && api.adsOn()) {
+        await api.ad("rice");
+        return;
+      }
       if (!api.eatRice()) {
         sfx("click", 0.5, 0);
       }
+    });
+    const reviveBtn = el("button", "jo-adbtn revive", "\uAD11\uACE0 \uBCF4\uACE0 \uACE7\uBC14\uB85C \uC77C\uC5B4\uB098\uAE30");
+    reviveBtn.hidden = true;
+    reviveBtn.addEventListener("click", async () => {
+      unlockAudio();
+      await api.ad("revive");
+    });
+    const retryBtn = el("button", "jo-adbtn retry", "\uD328\uC804 \uB4A4 \u2014 \uAD11\uACE0 \uBCF4\uACE0 \uC774 \uC804\uC7A5 \uACF5\uACA9 +30%");
+    retryBtn.hidden = true;
+    retryBtn.addEventListener("click", async () => {
+      unlockAudio();
+      await api.ad("retry");
     });
     const perkBox = el("div", "jo-perk");
     perkBox.hidden = true;
@@ -13130,6 +13274,7 @@ button:focus-visible {
     const TAB_NAMES = [["train", "\uB2E8\uB828"], ["skill", "\uBB34\uACF5"], ["tactic", "\uC804\uC220"], ["bag", "\uAC00\uBC29"], ["gear", "\uAD70\uC601"], ["rank", "\uC2E0\uBD84"], ["land", "\uC815\uBC8C"], ["daily", "\uC77C\uACFC"]];
     let bagSel = null;
     let bagPick = null;
+    let bagUndo = null;
     let gemSlot = -1;
     let bagView = "items", bagScroll = 0;
     let bagFx = null;
@@ -13328,7 +13473,7 @@ button:focus-visible {
       result.hidden = false;
     }
     const faceKeyOf = (rank) => rank < 2 ? "face_j0" : rank < 8 ? "face_j1" : rank < 13 ? "face_j2" : "face_j3";
-    root.append(hud, drawer, sheet, result, perkBox, el("div", "jo-rotate", "\uD654\uBA74\uC744 \uAC00\uB85C\uB85C \uB3CC\uB824 \uC8FC\uC138\uC694"));
+    root.append(hud, drawer, sheet, result, perkBox, reviveBtn, retryBtn, el("div", "jo-rotate", "\uD654\uBA74\uC744 \uAC00\uB85C\uB85C \uB3CC\uB824 \uC8FC\uC138\uC694"));
     if (api.offline) {
       const o = api.offline, box = el("div", "jo-offline"), card = el("div");
       const h = Math.floor(o.sec / 3600), m = Math.floor(o.sec % 3600 / 60);
@@ -13341,6 +13486,17 @@ button:focus-visible {
         box.remove();
       });
       card.appendChild(ok);
+      if (api.adsOn()) {
+        const x2 = el("button", "ad", "\uAD11\uACE0 \uBCF4\uACE0 2\uBC30 \uBC1B\uAE30");
+        x2.addEventListener("click", async () => {
+          unlockAudio();
+          if (await api.ad("offline")) {
+            sfx("levelUp", 1, 0);
+            box.remove();
+          }
+        });
+        card.appendChild(x2);
+      }
       box.appendChild(card);
       root.appendChild(box);
     }
@@ -13841,6 +13997,7 @@ button:focus-visible {
             } else if (r === "drop") {
               sfx("death", 0.7, 0);
               bagToast(`\uAC15\uD654 \uC2E4\uD328 \u2014 +${item.plus} \uB85C \uB0B4\uB824\uAC14\uB2E4`, 2.4);
+              bagUndo = { id: item.id, plus: item.plus + 1 };
             } else {
               sfx("death", 0.5, 0);
               bagToast("\uAC15\uD654 \uC2E4\uD328 \u2014 \uC7A5\uBE44\uB294 \uADF8\uB300\uB85C\uB2E4", 2);
@@ -13882,6 +14039,18 @@ button:focus-visible {
           });
           acts.append(equip, enh, fuse, salvage, lock);
           side2.appendChild(acts);
+          if (bagUndo && bagUndo.id === item.id && (item.plus || 0) === bagUndo.plus - 1 && api.adsOn()) {
+            const u = el("button", "jo-adbtn inline", `\uAD11\uACE0 \uBCF4\uACE0 +${bagUndo.plus} \uB85C \uB418\uB3CC\uB9AC\uAE30`);
+            u.addEventListener("click", async () => {
+              if (await api.ad("undo", bagUndo)) {
+                bagUndo = null;
+                sfx("forge", 1, 0);
+                bagToast("\uB418\uB3CC\uB838\uB2E4", 2);
+                rebuild();
+              }
+            });
+            side2.appendChild(u);
+          } else if (bagUndo && bagUndo.id !== item.id) bagUndo = null;
           if ((item.slot === "weapon" || item.slot === "armor") && (d.lts || []).length) {
             const row2 = el("div", "jo-lt-give");
             row2.appendChild(el("small", null, worn ? "\uBD80\uC7A5\uC5D0\uAC8C \u2014 \uB0B4\uAC00 \uCC2C \uAC83\uC740 \uBABB \uC900\uB2E4" : "\uBD80\uC7A5\uC5D0\uAC8C"));
@@ -13962,8 +14131,44 @@ button:focus-visible {
               }
             });
             line.appendChild(b);
+            if (api.adsOn() && done && !got) {
+              const x2 = el("button", "ad", "\uAD11\uACE0 2\uBC30");
+              x2.addEventListener("click", async () => {
+                const pz = await api.ad("daily", m.id);
+                if (pz) {
+                  sfx("levelUp", 0.8, 0);
+                  bagToast(m.name + " 2\uBC30 \u2014 " + say2(pz), 2.8);
+                  rebuild();
+                }
+              });
+              line.appendChild(x2);
+            }
             box.appendChild(line);
           }
+          list.appendChild(box);
+        }
+        if (api.adsOn()) {
+          const box = el("div", "jo-tactic"), left = packLeft(d), bl = boostLeft(d);
+          box.appendChild(el("b", null, "\uAD11\uACE0 \uBCF4\uACE0 \uBC1B\uAE30"));
+          const p1 = el("button", "jo-squad-reset", `\uBCF4\uAE09 \uAFB8\uB7EC\uBBF8 \u2014 \uC1F3\uC870\uAC01 \xB7 \uC5FD\uC804 \xB7 \uBCF4\uC11D 1 (\uC624\uB298 ${left}/${PACK_MAX})`);
+          p1.disabled = left <= 0;
+          p1.addEventListener("click", async () => {
+            const pz = await api.ad("pack");
+            if (pz) {
+              sfx("pickup", 1, 0);
+              bagToast("\uBCF4\uAE09 \uAFB8\uB7EC\uBBF8 \u2014 " + say2(pz), 2.8);
+              rebuild();
+            }
+          });
+          const p2 = el("button", "jo-squad-reset", bl ? `\uBC8C\uC774 2\uBC30 \u2014 ${Math.ceil(bl / 60)}\uBD84 \uB0A8\uC74C (\uB354 \uBCF4\uBA74 10\uBD84\uC529 \uB298\uC5B4\uB09C\uB2E4)` : "10\uBD84 \uB3D9\uC548 \uAD70\uB7C9 \xB7 \uC5FD\uC804 2\uBC30");
+          p2.addEventListener("click", async () => {
+            if (await api.ad("boost")) {
+              sfx("levelUp", 0.8, 0);
+              bagToast("10\uBD84 \uB3D9\uC548 \uAD70\uB7C9\xB7\uC5FD\uC804 2\uBC30", 2.6);
+              rebuild();
+            }
+          });
+          box.append(p1, p2);
           list.appendChild(box);
         }
         {
@@ -14423,14 +14628,28 @@ button:focus-visible {
                 row2.appendChild(b);
               }
               perkBox.appendChild(row2);
+              if (api.adsOn() && !o.rerolled) {
+                const rr = el("button", "reroll", "\uAD11\uACE0 \uBCF4\uACE0 \uB2E4\uC2DC \uBF51\uAE30");
+                rr.addEventListener("click", async () => {
+                  unlockAudio();
+                  await api.ad("reroll");
+                });
+                perkBox.appendChild(rr);
+              }
             }
           }
         }
         {
-          const R = S.rice, P = S.player, t = R ? R.cd > 0 ? `\uC8FC\uBA39\uBC25 ${R.n} \xB7 ${Math.ceil(R.cd)}\uCD08` : `\uC8FC\uBA39\uBC25 ${R.n} \xB7 \uCCB4\uB825 +40%` : "";
+          const R = S.rice, P = S.player, adRice = R && R.n <= 0 && api.adsOn(), t = R ? adRice ? "\uC8FC\uBA39\uBC25 0 \xB7 \uAD11\uACE0 \uBCF4\uACE0 +3" : R.cd > 0 ? `\uC8FC\uBA39\uBC25 ${R.n} \xB7 ${Math.ceil(R.cd)}\uCD08` : `\uC8FC\uBA39\uBC25 ${R.n} \xB7 \uCCB4\uB825 +40%` : "";
           if (riceBtn.textContent !== t) riceBtn.textContent = t;
-          const off = !R || R.n <= 0 || R.cd > 0 || !P || P.dead || P.hp >= P.maxHp;
+          const off = adRice ? false : !R || R.n <= 0 || R.cd > 0 || !P || P.dead || P.hp >= P.maxHp;
           if (riceBtn.disabled !== off) riceBtn.disabled = off;
+        }
+        {
+          const P = S.player, down = api.adsOn() && S.mode === "battle" && P && P.dead && !S.line.routed;
+          if (reviveBtn.hidden === down) reviveBtn.hidden = !down;
+          const again = api.adsOn() && S.mode === "battle" && S.lostLast && !S.perks.ad && P && !P.dead;
+          if (retryBtn.hidden === again) retryBtn.hidden = !again;
         }
         const p = S.player, d = S.save;
         if (!p || !S.info) return;
@@ -14554,6 +14773,50 @@ button:focus-visible {
     addEventListener("keyup", (e) => keys.delete(e.code));
     addEventListener("blur", () => keys.clear());
     return ui;
+  }
+
+  // src/joseon/ads.js
+  function adMode() {
+    if (typeof window === "undefined") return "none";
+    if (window.__toss && window.__toss.ad && typeof window.__toss.ad.show === "function") return "toss";
+    if (window.JoseonAds && typeof window.JoseonAds.show === "function") return "native";
+    if (!window.__toss && /^https?:$/.test(location.protocol)) return "test";
+    return "none";
+  }
+  var adsOn = () => adMode() !== "none";
+  var busy = false;
+  async function showAd(place) {
+    const mode = adMode();
+    if (mode === "none" || busy) return false;
+    busy = true;
+    try {
+      if (mode === "toss") return !!await window.__toss.ad.show(place);
+      if (mode === "native") return !!await window.JoseonAds.show(place);
+      return await new Promise((done) => {
+        const box = document.createElement("div");
+        box.className = "jo-adtest";
+        const card = document.createElement("div"), t = document.createElement("b"), s = document.createElement("small");
+        t.textContent = "\uAD11\uACE0 \uC790\uB9AC (\uC2DC\uD5D8\uC6A9)";
+        s.textContent = "\uC2E4\uC81C \uAD11\uACE0\uAC00 \uBD99\uAE30 \uC804\uC785\uB2C8\uB2E4 \xB7 3";
+        card.append(t, s);
+        box.appendChild(card);
+        document.body.appendChild(box);
+        let n = 3;
+        const tick = setInterval(() => {
+          n--;
+          s.textContent = `\uC2E4\uC81C \uAD11\uACE0\uAC00 \uBD99\uAE30 \uC804\uC785\uB2C8\uB2E4 \xB7 ${Math.max(0, n)}`;
+          if (n <= 0) {
+            clearInterval(tick);
+            box.remove();
+            done(true);
+          }
+        }, 1e3);
+      });
+    } catch (e) {
+      return false;
+    } finally {
+      busy = false;
+    }
   }
 
   // src/joseon/main.js
@@ -14778,6 +15041,70 @@ button:focus-visible {
         applyAuto();
       },
       eatRice,
+      // [Claude 수정 · 2026-10-11] 보상형 광고 (ads.js). 끝까지 봤을 때만 상을 준다. 준 것을 돌려준다(못 줬으면 null).
+      adsOn,
+      async ad(place, arg) {
+        const d = S.save, P = S.player;
+        const can = place === "revive" ? !!(P && P.dead && pending && pending.kind === "revive") : place === "retry" ? !!(S.lostLast && S.mode === "battle" && !S.perks.ad) : place === "rice" ? !!(S.rice && S.mode === "battle") : place === "offline" ? !!(offline && !offline.taken) : place === "daily" ? !!DAILIES.find((m) => m.id === arg) : place === "reroll" ? !!(S.perkOffer && !S.perkOffer.rerolled) : place === "undo" ? !!(arg && d.inventory.find((i) => i.id === arg.id && (i.plus || 0) === arg.plus - 1)) : true;
+        if (!can || !await showAd(place)) return null;
+        if (place === "revive") {
+          if (!(P.dead && pending && pending.kind === "revive")) return null;
+          const run = pending.run;
+          pending = null;
+          run();
+          P.invuln = 3.5;
+          return { ok: true };
+        }
+        if (place === "retry") {
+          S.perks.ad = 1;
+          S.lostLast = false;
+          if (P && P.recalc) P.recalc();
+          ui.toast("\uC774 \uC804\uC7A5\uC5D0\uC11C \uACF5\uACA9 +30%", 2.4);
+          return { ok: true };
+        }
+        if (place === "rice") {
+          S.rice.n += 3;
+          return { ok: true };
+        }
+        if (place === "offline") {
+          offline.taken = true;
+          claimOffline(d, { ...offline, grain: offline.grain * 2, coins: offline.coins * 2 });
+          writeSave(d);
+          return { ok: true };
+        }
+        if (place === "daily") {
+          const pz = claimDaily(d, arg);
+          if (!pz) return null;
+          pz.grain = (pz.grain || 0) * 2;
+          pz.coins *= 2;
+          pz.shards *= 2;
+          pz.gem *= 2;
+          give(pz);
+          writeSave(d);
+          return pz;
+        }
+        if (place === "pack") {
+          const pz = claimPack(d);
+          if (!pz) return null;
+          give(pz);
+          writeSave(d);
+          return pz;
+        }
+        if (place === "boost") {
+          d.boostUntil = Math.max(Date.now(), d.boostUntil || 0) + BOOST_SEC * 1e3;
+          writeSave(d);
+          return { ok: true };
+        }
+        if (place === "reroll") return perkReroll() ? { ok: true } : null;
+        if (place === "undo") {
+          const it = d.inventory.find((i) => i.id === arg.id);
+          if (!it) return null;
+          it.plus = arg.plus;
+          writeSave(d);
+          return { ok: true };
+        }
+        return null;
+      },
       // [Claude 수정 · 2026-10-11] 전장의 선택 · 무한의 탑 · 일일 임무·출석 · 보석 · 오프라인 보상
       perk: choosePerk,
       tower() {
@@ -14813,6 +15140,8 @@ button:focus-visible {
         return ok;
       },
       offline: offline ? { ...offline, claim() {
+        if (offline.taken) return;
+        offline.taken = true;
         claimOffline(S.save, offline);
         writeSave(S.save);
       } } : null,
@@ -15148,6 +15477,7 @@ button:focus-visible {
       stopBattleAudio();
       S.run.collapsed = true;
       SIM.losses++;
+      S.lostLast = true;
       writeSave(S.save);
       ui.banner(S.run.baseFell ? "\uBCF8\uC9C4\uC774 \uBD88\uD0D4\uB2E4!" : S.line.siege ? "\uC131\uC744 \uB3C4\uB85C \uBE7C\uC557\uACBC\uB2E4!" : S.fld.shore != null ? "\uBC14\uB2E4\uB85C \uBC00\uB824\uB0AC\uB2E4!" : "\uBCF8\uC9C4\uC774 \uBB34\uB108\uC84C\uB2E4!", "#ff594d", 3.4);
       ui.toast(S.run.baseFell ? "\uC55E\uC5D0\uC11C \uC774\uAE30\uACE0\uB3C4 \uB4A4\uB97C \uC783\uC5C8\uB2E4. \uD6C4\uBC29 \uACBD\uACC4\uB97C \uC138\uC6B0\uAC70\uB098 \uC81C\uB54C \uB3CC\uC544\uAC00\uB77C." : "\uD328\uC804. \uBAB8\uC744 \uB354 \uBCBC\uB9AC\uACE0 \uB2E4\uC2DC \uBD99\uB294\uB2E4.", 3.8);
@@ -15216,6 +15546,7 @@ button:focus-visible {
       stopBattleAudio();
       const d = S.save, info = S.info, bonus = Math.round((80 + stage * 40) * Math.pow(1.41, stage - 1) * statsOf(d).supply);
       dailyBump(d, "wins");
+      S.lostLast = false;
       if (info.detour && info.detour.kind === "tower") {
         const f = info.detour.floor, pz = towerPrize(d, f);
         d.tower = Math.max(d.tower || 0, f);
@@ -15308,7 +15639,7 @@ button:focus-visible {
       shake(0.5, 0.4);
       ui.banner("\uC4F0\uB7EC\uC84C\uB2E4", "#ff594d", 2.2);
       ui.toast("\uC77C\uC5B4\uC124 \uB54C\uAE4C\uC9C0 \uC804\uC120\uC774 \uBC00\uB9B0\uB2E4", 3.6);
-      pending = { at: now + 6, run: () => {
+      pending = { kind: "revive", at: now + 6, run: () => {
         if (S.mode !== "battle" || S.line.routed) return;
         bot.retreat = false;
         S.player.revive(...S.line.pos(0, S.line.siege ? -3 : -7));
