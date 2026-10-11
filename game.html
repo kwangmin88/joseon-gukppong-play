@@ -7762,12 +7762,12 @@ button:focus-visible {
   // src/joseon/lieutenants.js
   var LT_RANKS = [3, 7];
   var LT_STYLES = {
-    van: { name: "\uCC3D\uC7A1\uC774", art: "spear", look: "ltVan", color: "#ff9a5c", desc: "\uC55E\uC5D0\uC11C \uB4E4\uC774\uBC1B\uB294\uB2E4 \u2014 \uBA40\uB9AC\uAE4C\uC9C0 \uCAD3\uACE0 \uACF5\uACA9\uC774 \uC138\uB2E4", hp: 3.2, dmg: 3, skillName: "\uD729\uC4F8\uAE30", skill: "\uD729\uC4F8\uAE30: \uB458\uB808\uC758 \uC65C\uAD70 \uB2E4\uC12F\uC744 \uD06C\uAC8C \uBCA0\uC5B4 \uB0A0\uB9B0\uB2E4", skill2Name: "\uAD00\uD1B5\uCC3D", skill2: "\uAD00\uD1B5\uCC3D: \uC55E\uC73C\uB85C \uAE38\uAC8C \uCC14\uB7EC \uD55C \uC904\uC758 \uC65C\uAD70\uC744 \uAFF0\uB6AB\uB294\uB2E4 (\uACF5\uACA9\uC758 320%)", cd2: 12 },
-    sword: { name: "\uAC80\uBC29\uD328", art: "shield", look: "ltSword", color: "#ffd35c", desc: "\uCE7C\uACFC \uBC29\uD328 \u2014 \uACE0\uB8E8 \uC138\uACE0, \uBC1B\uB294 \uD53C\uD574 \u221215%", hp: 4, dmg: 2.4, skillName: "\uBC29\uD328\uCE58\uAE30", skill: "\uBC29\uD328\uCE58\uAE30: \uB458\uB808\uC758 \uC65C\uAD70 \uC5EC\uC12F\uC744 \uBCA0\uACE0 \uC7A0\uAE50 \uAD73\uD78C\uB2E4", skill2Name: "\uC5F0\uD658\uBCA0\uAE30", skill2: "\uC5F0\uD658\uBCA0\uAE30: \uAC00\uC7A5 \uC13C \uC801 \uD558\uB098\uB97C \uC138 \uBC88 \uC5F0\uB2EC\uC544 \uBCA4\uB2E4 (150%\uC529) \u2014 \uC7A5\uC218 \uC7A1\uC774", cd2: 10 },
-    guard: { name: "\uD0F1\uCEE4", art: "shield", look: "ltGuard", color: "#7fd1ff", scale: 1.42, desc: "\uCCA0\uAC11 \u2014 \uCCB4\uB825\uC774 \uC544\uC8FC \uB192\uACE0 \uBC1B\uB294 \uD53C\uD574 \u221235%, \uACF5\uACA9\uC740 \uC57D\uD558\uB2E4", hp: 6.5, dmg: 1.5, skillName: "\uCCA0\uBCBD \uBC00\uCE58\uAE30", skill: "\uCCA0\uBCBD \uBC00\uCE58\uAE30: \uB458\uB808\uC758 \uC65C\uAD70\uC744 \uBC00\uCCD0 \uB0B4\uACE0 \uB098\uB97C \uC870\uAE08 \uCE58\uB8CC\uD55C\uB2E4", skill2Name: "\uCCA0\uC639\uC131", skill2: "\uCCA0\uC639\uC131: 5\uCD08 \uB3D9\uC548 \uBC1B\uB294 \uD53C\uD574 \u221270%, \uB458\uB808\uC758 \uC65C\uAD70\uC744 \uAD73\uD78C\uB2E4", cd2: 16 },
-    bow: { name: "\uAD81\uC218", art: "archer", look: "ltBow", color: "#a6e07a", desc: "\uB4A4\uC5D0\uC11C \uC3DC\uB2E4 \u2014 \uBE68\uB9AC \uC3D8\uACE0 \uBA40\uB9AC \uB2FF\uB294\uB2E4", hp: 2.2, dmg: 2.6, skillName: "\uC18D\uC0AC", skill: "\uC18D\uC0AC: \uC65C\uAD70 \uBA38\uB9AC \uC704\uB85C \uD654\uC0B4 \uC5EC\uB35F \uBC1C", skill2Name: "\uC800\uACA9", skill2: "\uC800\uACA9: \uBA40\uB9AC \uC788\uB294 \uAC00\uC7A5 \uC13C \uC801 \uD558\uB098\uB97C \uAFF0\uB6AB\uB294\uB2E4 (\uACF5\uACA9\uC758 700%)", cd2: 11 },
-    heal: { name: "\uD790\uB7EC", art: "monk", look: "ltHeal", color: "#8ef0c0", desc: "\uC758\uC2B9 \u2014 \uB4A4\uC5D0\uC11C \uB098\uC640 \uAD70\uC0AC\uB97C \uCE58\uB8CC\uD55C\uB2E4, \uACF5\uACA9\uC740 \uC57D\uD558\uB2E4", hp: 3.2, dmg: 1, skillName: "\uC57D\uC190", skill: "\uC57D\uC190: \uB098\uB97C 12%, \uAC00\uAE4C\uC6B4 \uAD70\uC0AC\uB97C 30% \uCE58\uB8CC\uD55C\uB2E4 (7\uCD08\uB9C8\uB2E4)", skill2Name: "\uBD81\uB3CB\uAE30", skill2: "\uBD81\uB3CB\uAE30: 6\uCD08 \uB3D9\uC548 \uC628 \uAD70\uC0AC\uC758 \uACF5\uACA9 +20%", cd2: 18 },
-    horse: { name: "\uAE30\uBCD1", art: "horse", look: "ltHorse", color: "#e0a6ff", desc: "\uB9D0\uC744 \uD0C4\uB2E4 \u2014 \uAC00\uC7A5 \uBA40\uB9AC \uCAD3\uACE0 \uBE60\uB974\uB2E4 (\uC131\uBCBD\uC5D0\uC11C\uB294 \uB0B4\uB824\uC11C \uC2F8\uC6B4\uB2E4)", hp: 3.6, dmg: 2.8, skillName: "\uC9D3\uBC1F\uAE30", skill: "\uC9D3\uBC1F\uAE30: \uB9D0\uC774 \uC55E\uBC1C\uC744 \uB4E4\uC5B4 \uB0B4\uB9AC\uCC0D\uB294\uB2E4 \u2014 \uB458\uB808 \uC5EC\uB35F\uC744 \uAD73\uD788\uACE0(1.2\uCD08) \uACF5\uC911\uC5D0 \uB744\uC6B4\uB2E4 (\uACF5\uACA9\uC758 140%)", skill2Name: "\uB3CC\uACA9", skill2: "\uB3CC\uACA9: \uB9D0\uC744 \uBAB0\uC544 \uC65C\uAD70 \uC0AC\uC774\uB97C \uB6AB\uACE0 \uC9C0\uB098\uAC00\uBA70 \uAE38 \uC704\uC758 \uC801\uC744 \uCE58\uC5B4 \uB0A0\uB9B0\uB2E4 (200%)", cd2: 12 }
+    van: { name: "\uCC3D\uC7A1\uC774", art: "spear", look: "ltVan", color: "#ff9a5c", desc: "\uC55E\uC5D0\uC11C \uB4E4\uC774\uBC1B\uB294\uB2E4 \u2014 \uBA40\uB9AC\uAE4C\uC9C0 \uCAD3\uACE0 \uACF5\uACA9\uC774 \uC138\uB2E4", hp: 3.2, dmg: 3, skillName: "\uD729\uC4F8\uAE30", skill: "\uD729\uC4F8\uAE30: \uB458\uB808\uC758 \uC65C\uAD70 \uB2E4\uC12F\uC744 \uD06C\uAC8C \uBCA0\uC5B4 \uB0A0\uB9B0\uB2E4", skill2Name: "\uAD00\uD1B5\uCC3D", skill2: "\uAD00\uD1B5\uCC3D: \uC55E\uC73C\uB85C \uAE38\uAC8C \uCC14\uB7EC \uD55C \uC904\uC758 \uC65C\uAD70\uC744 \uAFF0\uB6AB\uB294\uB2E4 (\uACF5\uACA9\uC758 320%)", cd2: 12, skill3Name: "\uD68C\uC624\uB9AC", skill3: "\uD68C\uC624\uB9AC: 1.6\uCD08 \uB3D9\uC548 \uCC3D\uC744 \uB3CC\uB9AC\uBA70 \uB458\uB808\uB97C \uACC4\uC18D \uBCA4\uB2E4 (0.2\uCD08\uB9C8\uB2E4 55%)", cd3: 15, skill4Name: "\uB3C4\uC57D \uAC15\uD0C0", skill4: "\uB3C4\uC57D \uAC15\uD0C0: \uC65C\uAD70\uC774 \uBAB0\uB9B0 \uACF3\uC73C\uB85C \uB6F0\uC5B4\uB4E4\uC5B4 \uB0B4\uB824\uCC0D\uB294\uB2E4 \u2014 \uB458\uB808\uB97C \uB744\uC6B0\uACE0 \uAD73\uD78C\uB2E4 (240%)", cd4: 20 },
+    sword: { name: "\uAC80\uBC29\uD328", art: "shield", look: "ltSword", color: "#ffd35c", desc: "\uCE7C\uACFC \uBC29\uD328 \u2014 \uACE0\uB8E8 \uC138\uACE0, \uBC1B\uB294 \uD53C\uD574 \u221215%", hp: 4, dmg: 2.4, skillName: "\uBC29\uD328\uCE58\uAE30", skill: "\uBC29\uD328\uCE58\uAE30: \uB458\uB808\uC758 \uC65C\uAD70 \uC5EC\uC12F\uC744 \uBCA0\uACE0 \uC7A0\uAE50 \uAD73\uD78C\uB2E4", skill2Name: "\uC5F0\uD658\uBCA0\uAE30", skill2: "\uC5F0\uD658\uBCA0\uAE30: \uAC00\uC7A5 \uC13C \uC801 \uD558\uB098\uB97C \uC138 \uBC88 \uC5F0\uB2EC\uC544 \uBCA4\uB2E4 (150%\uC529) \u2014 \uC7A5\uC218 \uC7A1\uC774", cd2: 10, skill3Name: "\uBC29\uD328 \uB3CC\uC9C4", skill3: "\uBC29\uD328 \uB3CC\uC9C4: \uBC29\uD328\uB97C \uC55E\uC138\uC6CC \uB0B4\uB2EC\uB824 \uAE38 \uC704\uC758 \uC65C\uAD70\uC744 \uCE58\uACE0 1.2\uCD08 \uAD73\uD78C\uB2E4 (180%)", cd3: 12, skill4Name: "\uBC29\uD328 \uB358\uC9C0\uAE30", skill4: "\uBC29\uD328 \uB358\uC9C0\uAE30: \uB358\uC9C4 \uBC29\uD328\uAC00 \uC65C\uAD70 \uB2E4\uC12F \uC0AC\uC774\uB97C \uD280\uC5B4 \uB2E4\uB2CC\uB2E4 (160%\uC529)", cd4: 16 },
+    guard: { name: "\uD0F1\uCEE4", art: "shield", look: "ltGuard", color: "#7fd1ff", scale: 1.42, desc: "\uCCA0\uAC11 \u2014 \uCCB4\uB825\uC774 \uC544\uC8FC \uB192\uACE0 \uBC1B\uB294 \uD53C\uD574 \u221235%, \uACF5\uACA9\uC740 \uC57D\uD558\uB2E4", hp: 6.5, dmg: 1.5, skillName: "\uCCA0\uBCBD \uBC00\uCE58\uAE30", skill: "\uCCA0\uBCBD \uBC00\uCE58\uAE30: \uB458\uB808\uC758 \uC65C\uAD70\uC744 \uBC00\uCCD0 \uB0B4\uACE0 \uB098\uB97C \uC870\uAE08 \uCE58\uB8CC\uD55C\uB2E4", skill2Name: "\uCCA0\uC639\uC131", skill2: "\uCCA0\uC639\uC131: 5\uCD08 \uB3D9\uC548 \uBC1B\uB294 \uD53C\uD574 \u221270%, \uB458\uB808\uC758 \uC65C\uAD70\uC744 \uAD73\uD78C\uB2E4", cd2: 16, skill3Name: "\uC9C0\uC9C4 \uAC15\uD0C0", skill3: "\uC9C0\uC9C4 \uAC15\uD0C0: \uB545\uC744 \uB0B4\uB9AC\uCCD0 \uC55E\uCABD \uBD80\uCC44\uAF34\uC758 \uC65C\uAD70\uC744 \uB744\uC6B0\uACE0 \uAD73\uD78C\uB2E4 (160%)", cd3: 14, skill4Name: "\uB04C\uC5B4\uB2F9\uAE30\uAE30", skill4: "\uB04C\uC5B4\uB2F9\uAE30\uAE30: \uB458\uB808\uC758 \uC65C\uAD70 \uC5EC\uB35F\uC744 \uC81C \uC55E\uC73C\uB85C \uB04C\uC5B4\uBAA8\uC740\uB2E4 \u2014 \uBB49\uCE5C \uC801\uC740 \uAD11\uC5ED\uC758 \uBC25\uC774\uB2E4 (80%)", cd4: 18 },
+    bow: { name: "\uAD81\uC218", art: "archer", look: "ltBow", color: "#a6e07a", desc: "\uB4A4\uC5D0\uC11C \uC3DC\uB2E4 \u2014 \uBE68\uB9AC \uC3D8\uACE0 \uBA40\uB9AC \uB2FF\uB294\uB2E4", hp: 2.2, dmg: 2.6, skillName: "\uC18D\uC0AC", skill: "\uC18D\uC0AC: \uC65C\uAD70 \uBA38\uB9AC \uC704\uB85C \uD654\uC0B4 \uC5EC\uB35F \uBC1C", skill2Name: "\uC800\uACA9", skill2: "\uC800\uACA9: \uBA40\uB9AC \uC788\uB294 \uAC00\uC7A5 \uC13C \uC801 \uD558\uB098\uB97C \uAFF0\uB6AB\uB294\uB2E4 (\uACF5\uACA9\uC758 700%)", cd2: 11, skill3Name: "\uBD80\uCC44\uC0B4", skill3: "\uBD80\uCC44\uC0B4: \uD654\uC0B4 \uC77C\uACF1 \uBC1C\uC744 \uBD80\uCC44\uAF34\uB85C \uD55C\uAEBC\uBC88\uC5D0 \uC3DC\uB2E4 (130%\uC529)", cd3: 10, skill4Name: "\uC5F0\uC0AC", skill4: "\uC5F0\uC0AC: \uAC00\uC7A5 \uC13C \uC801 \uD558\uB098\uC5D0\uAC8C \uC5F4 \uBC1C\uC744 \uC787\uB2EC\uC544 \uC3DC\uB2E4 (70%\uC529)", cd4: 15 },
+    heal: { name: "\uD790\uB7EC", art: "monk", look: "ltHeal", color: "#8ef0c0", desc: "\uC758\uC2B9 \u2014 \uB4A4\uC5D0\uC11C \uB098\uC640 \uAD70\uC0AC\uB97C \uCE58\uB8CC\uD55C\uB2E4, \uACF5\uACA9\uC740 \uC57D\uD558\uB2E4", hp: 3.2, dmg: 1, skillName: "\uC57D\uC190", skill: "\uC57D\uC190: \uB098\uB97C 12%, \uAC00\uAE4C\uC6B4 \uAD70\uC0AC\uB97C 30% \uCE58\uB8CC\uD55C\uB2E4 (7\uCD08\uB9C8\uB2E4)", skill2Name: "\uBD81\uB3CB\uAE30", skill2: "\uBD81\uB3CB\uAE30: 6\uCD08 \uB3D9\uC548 \uC628 \uAD70\uC0AC\uC758 \uACF5\uACA9 +20%", cd2: 18, skill3Name: "\uBCF4\uD638\uB9C9", skill3: "\uBCF4\uD638\uB9C9: \uB0B4\uAC00 \uC704\uD0DC\uB85C\uC6B0\uBA74 3\uCD08 \uB3D9\uC548 \uB0B4\uAC00 \uBC1B\uB294 \uD53C\uD574\uB97C \uD06C\uAC8C \uC904\uC778\uB2E4 (20\uCD08\uB9C8\uB2E4)", cd3: 20, skill4Name: "\uC815\uD654\uC758 \uBE5B", skill4: "\uC815\uD654\uC758 \uBE5B: \uB458\uB808\uC758 \uC65C\uAD70\uC744 \uD0DC\uC6B0\uACE0(150%) \uAC00\uAE4C\uC6B4 \uAD70\uC0AC\uB97C 12% \uCE58\uB8CC\uD55C\uB2E4", cd4: 14 },
+    horse: { name: "\uAE30\uBCD1", art: "horse", look: "ltHorse", color: "#e0a6ff", desc: "\uB9D0\uC744 \uD0C4\uB2E4 \u2014 \uAC00\uC7A5 \uBA40\uB9AC \uCAD3\uACE0 \uBE60\uB974\uB2E4 (\uC131\uBCBD\uC5D0\uC11C\uB294 \uB0B4\uB824\uC11C \uC2F8\uC6B4\uB2E4)", hp: 3.6, dmg: 2.8, skillName: "\uC9D3\uBC1F\uAE30", skill: "\uC9D3\uBC1F\uAE30: \uB9D0\uC774 \uC55E\uBC1C\uC744 \uB4E4\uC5B4 \uB0B4\uB9AC\uCC0D\uB294\uB2E4 \u2014 \uB458\uB808 \uC5EC\uB35F\uC744 \uAD73\uD788\uACE0(1.2\uCD08) \uACF5\uC911\uC5D0 \uB744\uC6B4\uB2E4 (\uACF5\uACA9\uC758 140%)", skill2Name: "\uB3CC\uACA9", skill2: "\uB3CC\uACA9: \uB9D0\uC744 \uBAB0\uC544 \uC65C\uAD70 \uC0AC\uC774\uB97C \uB6AB\uACE0 \uC9C0\uB098\uAC00\uBA70 \uAE38 \uC704\uC758 \uC801\uC744 \uCE58\uC5B4 \uB0A0\uB9B0\uB2E4 (200%)", cd2: 12, skill3Name: "\uC5F0\uC18D \uB3CC\uACA9", skill3: "\uC5F0\uC18D \uB3CC\uACA9: \uC138 \uBC88 \uC787\uB2EC\uC544 \uCE58\uACE0 \uC9C0\uB098\uAC04\uB2E4 (130%\uC529)", cd3: 16, skill4Name: "\uCC3D \uD22C\uCC99", skill4: "\uCC3D \uD22C\uCC99: \uAC00\uC7A5 \uC13C \uC801\uC5D0\uAC8C \uCC3D\uC744 \uB358\uC9C4\uB2E4 \u2014 \uAE38 \uC704\uC758 \uC801\uB3C4 \uAFF0\uB6AB\uB294\uB2E4 (450%)", cd4: 14 }
   };
   var LT_CANDS = [
     { name: "\uAC15\uB3CC\uC1E0", style: "van", look: "\uBD89\uC740 \uAC11\uC637\uC5D0 \uC5B8\uC6D4\uB3C4. \uC8FC\uD669 \uC601\uAE30" },
@@ -7778,6 +7778,7 @@ button:focus-visible {
     { name: "\uCD5C\uB0A0\uC318", style: "horse", look: "\uAC80\uC740 \uB9D0\uC744 \uD0C4 \uBCF4\uB78F\uBE5B \uAC11\uC637\uC758 \uAE30\uBCD1" }
   ];
   var LT_NAMES = LT_CANDS.map((c) => c.name);
+  var LT_SKILL_LV = [1, 1, 15, 35];
   var LT_COSTS = [0, 3e3, 1e4, 3e4, 8e4, 2e5];
   var ltCost = (d) => LT_COSTS[Math.min(LT_COSTS.length - 1, (d.lts || []).length)];
   var ltOut = (d) => (d.lts || []).filter((l) => l.out && l.post == null);
@@ -9366,6 +9367,27 @@ button:focus-visible {
       }
       super.think(dt);
       if (S.line.routed || this.dead || this.resting) return;
+      if (this.q && this.q.length) {
+        for (const e of this.q) e.t -= dt;
+        const due = this.q.filter((e) => e.t <= 0);
+        this.q = this.q.filter((e) => e.t > 0);
+        this.inSkill = true;
+        for (const e of due) e.run();
+      }
+      for (const n of [3, 4]) {
+        if (this.lt.lv < LT_SKILL_LV[n - 1]) continue;
+        const key = "sk" + n + "T", ST = LT_STYLES[this.lt.style];
+        this[key] = (this[key] ?? rand(6, 12)) - dt;
+        if (this[key] > 0) continue;
+        this.inSkill = true;
+        if (this.skillX(n)) {
+          this[key] = ST["cd" + n] * this.cdMul;
+          popup(this.x, this.y + 2, ST["skill" + n + "Name"], this.aura.color, 1.2);
+          ghost(this, 0.3);
+          return;
+        }
+        this[key] = 0.8;
+      }
       this.inSkill = true;
       this.sk2T = (this.sk2T ?? rand(7, 11)) - dt;
       if (this.sk2T <= 0) {
@@ -9492,6 +9514,222 @@ button:focus-visible {
       }
       popup(this.x, this.y + 2, LT_STYLES[style].skillName, this.aura.color, 1.1);
       this.skT = 9 * this.cdMul;
+    }
+    /** 셋째(n=3)·넷째(n=4) 기술. 썼으면 true. 잇달아 나가는 것은 this.q 에 예약한다. */
+    skillX(n) {
+      const style = this.lt.style, c = this.aura.color, me = this;
+      const within = (r, x = this.x, y = this.y) => S.W.filter((u) => !u.dead && (u.x - x) ** 2 + (u.y - y) ** 2 < r * r);
+      const strike2 = (f, mul, kb, stun, dx, dy, lift2) => {
+        if (f.dead) return false;
+        const x = f.x, y = f.y;
+        if (!f.takeHit({ dmg: Math.round(this.damage * mul), dx, dy, kb: f.isBoss ? Math.min(kb, 5) : kb, stun, heavy: true, src: this })) return false;
+        popupDamage(x, y, f.lastDamage, true);
+        hitSpark(x, y, dx, dy, true);
+        if (lift2 && !f.isBoss && !f.isEngine) {
+          f.air = f.airDur = 0.45;
+          f.airH = lift2;
+        }
+        return true;
+      };
+      const toward2 = (f, x = this.x, y = this.y) => {
+        const d = Math.hypot(f.x - x, f.y - y) || 1;
+        return [(f.x - x) / d, (f.y - y) / d, d];
+      };
+      const closest = (list, x = this.x, y = this.y) => list.reduce((b, u) => !b || (u.x - x) ** 2 + (u.y - y) ** 2 < (b.x - x) ** 2 + (b.y - y) ** 2 ? u : b, null);
+      const toughest = (list) => list.reduce((b, u) => !b || (u.isBoss ? 1e15 : 0) + u.hp > (b.isBoss ? 1e15 : 0) + b.hp ? u : b, null);
+      const onPath = (dx, dy, len, w) => S.W.filter((u) => {
+        if (u.dead) return false;
+        const px = u.x - this.x, py = u.y - this.y, a = px * dx + py * dy;
+        return a > -0.3 && a < len && Math.abs(px * dy - py * dx) < w;
+      });
+      const later2 = (t, run) => (this.q || (this.q = [])).push({ t, run: () => {
+        if (!me.dead) run();
+      } });
+      const k = style + n;
+      if (k === "bow3") {
+        const t = closest(within(11));
+        if (!t) return false;
+        const [dx, dy] = toward2(t), base = Math.atan2(dy, dx);
+        const hit = /* @__PURE__ */ new Set();
+        for (let i = -3; i <= 3; i++) {
+          const a = base + i * 0.2, rx = Math.cos(a), ry = Math.sin(a);
+          thrust(this.x, this.y + 1, rx, ry, 10, c, 0.9);
+          const f = onPath(rx, ry, 10, 0.65).filter((u) => !hit.has(u)).sort((p, q) => (p.x - this.x) ** 2 + (p.y - this.y) ** 2 - (q.x - this.x) ** 2 - (q.y - this.y) ** 2)[0];
+          if (f) {
+            hit.add(f);
+            strike2(f, 1.3, 5, 0.25, rx, ry);
+          }
+        }
+        sfx("skArrows", 0.7, 0.1);
+        return true;
+      }
+      if (k === "bow4") {
+        const t = toughest(within(13));
+        if (!t) return false;
+        for (let i = 0; i < 10; i++) later2(i * 0.1, () => {
+          const f = t.dead ? toughest(within(13)) : t;
+          if (!f) return;
+          const [dx, dy, d] = toward2(f);
+          thrust(me.x, me.y + 1, dx, dy, d, c, 0.8);
+          strike2(f, 0.7, 2, 0.1, dx, dy);
+          if (i % 3 === 0) sfx("swing", 0.4);
+        });
+        return true;
+      }
+      if (k === "sword3") {
+        if (S.line.siege) return false;
+        const t = closest(within(6));
+        if (!t) return false;
+        const [dx, dy, d] = toward2(t), len = Math.min(5, d + 1.2), row = onPath(dx, dy, len, 1.2);
+        if (!row.length) return false;
+        for (let i = 0; i < 4; i++) {
+          ghost(this, 0.3);
+          this.x += dx * len / 5;
+          this.y += dy * len / 5;
+        }
+        for (const f of row.slice(0, 8)) strike2(f, 1.8, 14, 1.2, dx, dy);
+        wave(this.x, this.y, dx, dy, 1.5, c, 6, 0.3);
+        dust(this.x, this.y, -dx, -dy, 6);
+        sfx("skSlam", 0.6, 0.1);
+        return true;
+      }
+      if (k === "sword4") {
+        let cur = closest(within(8));
+        if (!cur) return false;
+        const seen = /* @__PURE__ */ new Set();
+        let px = this.x, py = this.y;
+        for (let i = 0; i < 5 && cur; i++) {
+          const f = cur, fx0 = px, fy0 = py;
+          seen.add(f);
+          later2(i * 0.09, () => {
+            if (f.dead) return;
+            const [dx, dy, d] = toward2(f, fx0, fy0);
+            thrust(fx0, fy0 + 0.9, dx, dy, d, c, 1.5);
+            ring(f.x, f.y, 0.2, 1, "rgba(255,211,92,0.9)", 0.2);
+            strike2(f, 1.6, 6, 0.5, dx, dy);
+          });
+          px = f.x;
+          py = f.y;
+          cur = closest(within(4.5, px, py).filter((u) => !seen.has(u)), px, py);
+        }
+        sfx("skCut", 0.6, 0.1);
+        return true;
+      }
+      if (k === "guard3") {
+        const t = closest(within(5));
+        if (!t) return false;
+        const [dx, dy] = toward2(t), list = within(5.5).filter((u) => {
+          const [ux, uy] = toward2(u);
+          return ux * dx + uy * dy > 0.7;
+        });
+        if (list.length < 2) return false;
+        for (const f of list.slice(0, 10)) {
+          const [ux, uy] = toward2(f);
+          strike2(f, 1.6, 9, 0.8, ux, uy, 0.8);
+        }
+        for (let i = 1; i <= 3; i++) wave(this.x + dx * i * 1.5, this.y + dy * i * 1.5, dx, dy, 1.3 + i * 0.3, c, 8, 0.3);
+        dust(this.x + dx * 2, this.y + dy * 2, dx, dy, 10);
+        shake && shake(0.25, 0.25);
+        this.act = { kind: "slam", t: 0.36, dur: 0.36, turns: 0 };
+        sfx("skSlam", 0.7, 0.1);
+        return true;
+      }
+      if (k === "guard4") {
+        const list = within(6.5).filter((u) => !u.isBoss && !u.isEngine && (u.x - this.x) ** 2 + (u.y - this.y) ** 2 > 2.2);
+        if (list.length < 3) return false;
+        for (const f of list.slice(0, 8)) {
+          const [ux, uy, d] = toward2(f);
+          thrust(this.x, this.y + 0.9, ux, uy, d, c, 0.7);
+          strike2(f, 0.8, 0, 0.6, -ux, -uy);
+          f.knock(-ux, -uy, Math.min(26, d * 5));
+        }
+        ring(this.x, this.y, 6, 0.6, "rgba(127,209,255,0.8)", 0.35);
+        sfx("skOrder", 0.4, 0.1);
+        return true;
+      }
+      if (k === "van3") {
+        if (within(3).length < 3) return false;
+        for (let i = 0; i < 8; i++) later2(i * 0.2, () => {
+          for (const f of within(2.9).slice(0, 6)) {
+            const [ux, uy] = toward2(f);
+            strike2(f, 0.55, 4, 0.15, ux, uy);
+          }
+          wave(me.x, me.y, Math.cos(i * 1.3), Math.sin(i * 1.3), 2.2, c, 7, 0.22);
+          me.act = { kind: "spin", t: 0.22, dur: 0.22, turns: 1 };
+        });
+        sfx("skTornado", 0.6, 0.1);
+        return true;
+      }
+      if (k === "van4") {
+        if (S.line.siege) return false;
+        const t = closest(within(8).filter((u) => (u.x - this.x) ** 2 + (u.y - this.y) ** 2 > 4));
+        if (!t || within(2.6, t.x, t.y).length < 3) return false;
+        ghost(this, 0.4);
+        this.x = t.x - 0.4;
+        this.y = t.y;
+        this.act = { kind: "slam", t: 0.34, dur: 0.34, turns: 0 };
+        for (const f of within(2.6).slice(0, 8)) {
+          const [ux, uy] = toward2(f);
+          strike2(f, 2.4, 14, 0.6, ux, uy, 0.9);
+        }
+        ring(this.x, this.y, 0.3, 2.6, "rgba(255,154,92,0.95)", 0.3);
+        dust(this.x, this.y, 0, 1, 12);
+        shake && shake(0.3, 0.3);
+        sfx("skSlam", 0.8, 0.1);
+        return true;
+      }
+      if (k === "heal3") {
+        const P0 = S.player;
+        if (!P0 || P0.dead || P0.hp > P0.maxHp * 0.6) return false;
+        S.buffs.guardT = Math.max(S.buffs.guardT || 0, 3);
+        ring(P0.x, P0.y, 0.3, 1.8, "rgba(142,240,192,0.95)", 0.5);
+        ring(P0.x, P0.y, 1.2, 1.5, "rgba(220,255,240,0.9)", 1.2);
+        popup(P0.x, P0.y + 2.4, "\uBCF4\uD638\uB9C9", "#8ef0c0", 1.1);
+        sfx("skBuff", 0.6, 0.1);
+        return true;
+      }
+      if (k === "heal4") {
+        const foes = within(4.5);
+        if (foes.length < 2) return false;
+        for (const f of foes.slice(0, 8)) {
+          const [ux, uy] = toward2(f);
+          strike2(f, 1.5, 6, 0.3, ux, uy);
+        }
+        for (const u of S.J) if (!u.dead && u.hp < u.maxHp && (u.x - this.x) ** 2 + (u.y - this.y) ** 2 < 20) u.heal(Math.round(u.maxHp * 0.12));
+        ring(this.x, this.y, 0.3, 4.5, "rgba(255,250,210,0.95)", 0.4);
+        ring(this.x, this.y, 0.3, 3, "rgba(142,240,192,0.8)", 0.5);
+        sfx("skBuff", 0.6, 0.1);
+        return true;
+      }
+      if (k === "horse3") {
+        if (S.line.siege || within(7).length < 3) return false;
+        for (let i = 0; i < 3; i++) later2(i * 0.28, () => {
+          const t = closest(within(7));
+          if (!t) return;
+          const [dx, dy] = toward2(t), row = onPath(dx, dy, 3.4, 1.2);
+          for (let j = 0; j < 3; j++) {
+            ghost(me, 0.3);
+            me.x += dx * 0.9;
+            me.y += dy * 0.9;
+          }
+          for (const f of row.slice(0, 6)) strike2(f, 1.3, 14, 0.3, dx, dy, 0.5);
+          wave(me.x, me.y, dx, dy, 1.4, c, 5, 0.25);
+          sfx("skHorse", 0.4, 0.1);
+        });
+        return true;
+      }
+      if (k === "horse4") {
+        const t = toughest(within(12));
+        if (!t) return false;
+        const [dx, dy, d] = toward2(t);
+        thrust(this.x, this.y + 1.2, dx, dy, d, c, 2);
+        for (const f of onPath(dx, dy, d - 0.5, 0.8).filter((u) => u !== t).slice(0, 3)) strike2(f, 2, 8, 0.3, dx, dy);
+        strike2(t, 4.5, 8, 0.5, dx, dy);
+        ring(t.x, t.y, 0.2, 1.6, "rgba(224,166,255,0.9)", 0.3);
+        sfx("heavySwing", 0.8);
+        return true;
+      }
+      return false;
     }
     /** 둘째 고유 기술. 썼으면 true. */
     skill2() {
@@ -13099,6 +13337,10 @@ button:focus-visible {
             card.appendChild(el("small", null, `\uBD80\uD558 \uB300\uBE44 \uCCB4\uB825 \xD7${m.hp.toFixed(1)} \xB7 \uACF5\uACA9 \xD7${m.dmg.toFixed(1)} \xB7 \uACBD\uD5D8 ${num(Math.round(l.xp))}${l.lv >= d.level ? " (\uB0B4 \uB808\uBCA8\uAE4C\uC9C0\uB9CC \uC624\uB978\uB2E4)" : ""}`));
             card.appendChild(el("small", null, `\uAE30\uC220 \u2460 ${S0.skill}`));
             card.appendChild(el("small", null, `\uAE30\uC220 \u2461 ${S0.skill2}`));
+            for (const n of [3, 4]) {
+              const open = l.lv >= LT_SKILL_LV[n - 1];
+              card.appendChild(el("small", open ? null : "dim", `\uAE30\uC220 ${n === 3 ? "\u2462" : "\u2463"} ${S0["skill" + n]}${open ? "" : ` \u2014 Lv ${LT_SKILL_LV[n - 1]} \uC5D0 \uC5F4\uB9B0\uB2E4`}`));
+            }
             {
               const t = ltOptText(d, l);
               card.appendChild(el("small", "jo-lt-opt", t ? `\uC7A5\uBE44 \uC635\uC158 \u2014 ${t}` : "\uC7A5\uBE44 \uC635\uC158 \u2014 \uC5C6\uC74C (\uBB3C\uB824\uC900 \uC7A5\uBE44\uC758 \uC635\uC158\xB7\uC138\uD2B8\xB7\uD3C9\uD0C0 \uAD11\uC5ED\uC774 \uADF8\uB300\uB85C \uBA39\uB294\uB2E4. \uAC00\uBC29\uC5D0\uC11C \uC9C1\uC811 \uACE8\uB77C \uC904 \uC218\uB3C4 \uC788\uB2E4)"));
@@ -13162,7 +13404,7 @@ button:focus-visible {
               const hd = el("div", "jo-lt-head");
               hd.append(pic(ICONS["unit_j_" + S0.art] ? "unit_j_" + S0.art : "unit_j_spear", "jo-unit-pic"), el("b", null, `${c.name} \xB7 ${S0.name}`));
               card.appendChild(hd);
-              card.append(el("small", null, `${c.look} \u2014 ${S0.desc}`), el("small", null, `\uBD80\uD558 \uB300\uBE44 \uCCB4\uB825 \xD7${S0.hp} \xB7 \uACF5\uACA9 \xD7${S0.dmg}`), el("small", null, `\uAE30\uC220 \u2460 ${S0.skill}`), el("small", null, `\uAE30\uC220 \u2461 ${S0.skill2}`));
+              card.append(el("small", null, `${c.look} \u2014 ${S0.desc}`), el("small", null, `\uBD80\uD558 \uB300\uBE44 \uCCB4\uB825 \xD7${S0.hp} \xB7 \uACF5\uACA9 \xD7${S0.dmg}`), el("small", null, `\uAE30\uC220 \u2460 ${S0.skill}`), el("small", null, `\uAE30\uC220 \u2461 ${S0.skill2}`), el("small", "dim", `\uAE30\uC220 \u2462 ${S0.skill3} \u2014 Lv ${LT_SKILL_LV[2]}`), el("small", "dim", `\uAE30\uC220 \u2463 ${S0.skill4} \u2014 Lv ${LT_SKILL_LV[3]}`));
               const b = el("button", "jo-lt-out", cost ? `\uC601\uC785 \xB7 \uC5FD\uC804 ${num(cost)}` : "\uC601\uC785");
               b.disabled = d.coins < cost;
               b.addEventListener("click", () => {
@@ -15124,6 +15366,9 @@ button:focus-visible {
       rankUp: doRankUp,
       Lieutenant,
       // [Claude 수정 · 2026-10-11] 시험용 — 부장 여섯을 한꺼번에 세워 볼 때 쓴다
+      cast: castSkill,
+      SKILLS,
+      // [Claude 수정 · 2026-10-11] 시험용 — 기술을 하나씩 써 보고 찍을 때
       /**
        * 화면 없이 빨리 돌린다 — 밸런스를 볼 때 쓴다. 역경직은 건너뛴다.
        * spend 가 참이면 사람처럼 번 것을 바로 쓴다: 승급할 수 있으면 하고, 가장 싼 단련·장비를 계속 산다.
