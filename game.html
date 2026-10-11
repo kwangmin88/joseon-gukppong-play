@@ -7762,12 +7762,12 @@ button:focus-visible {
   // src/joseon/lieutenants.js
   var LT_RANKS = [3, 7];
   var LT_STYLES = {
-    van: { name: "\uCC3D\uC7A1\uC774", art: "spear", look: "ltVan", color: "#ff9a5c", desc: "\uC55E\uC5D0\uC11C \uB4E4\uC774\uBC1B\uB294\uB2E4 \u2014 \uBA40\uB9AC\uAE4C\uC9C0 \uCAD3\uACE0 \uACF5\uACA9\uC774 \uC138\uB2E4", hp: 3.2, dmg: 3, skillName: "\uD729\uC4F8\uAE30", skill: "\uD729\uC4F8\uAE30: \uB458\uB808\uC758 \uC65C\uAD70 \uB2E4\uC12F\uC744 \uD06C\uAC8C \uBCA0\uC5B4 \uB0A0\uB9B0\uB2E4", skill2Name: "\uAD00\uD1B5\uCC3D", skill2: "\uAD00\uD1B5\uCC3D: \uC55E\uC73C\uB85C \uAE38\uAC8C \uCC14\uB7EC \uD55C \uC904\uC758 \uC65C\uAD70\uC744 \uAFF0\uB6AB\uB294\uB2E4 (\uACF5\uACA9\uC758 320%)", cd2: 12, skill3Name: "\uD68C\uC624\uB9AC", skill3: "\uD68C\uC624\uB9AC: 1.6\uCD08 \uB3D9\uC548 \uCC3D\uC744 \uB3CC\uB9AC\uBA70 \uB458\uB808\uB97C \uACC4\uC18D \uBCA4\uB2E4 (0.2\uCD08\uB9C8\uB2E4 55%)", cd3: 15, skill4Name: "\uB3C4\uC57D \uAC15\uD0C0", skill4: "\uB3C4\uC57D \uAC15\uD0C0: \uC65C\uAD70\uC774 \uBAB0\uB9B0 \uACF3\uC73C\uB85C \uB6F0\uC5B4\uB4E4\uC5B4 \uB0B4\uB824\uCC0D\uB294\uB2E4 \u2014 \uB458\uB808\uB97C \uB744\uC6B0\uACE0 \uAD73\uD78C\uB2E4 (240%)", cd4: 20 },
-    sword: { name: "\uAC80\uBC29\uD328", art: "shield", look: "ltSword", color: "#ffd35c", desc: "\uCE7C\uACFC \uBC29\uD328 \u2014 \uACE0\uB8E8 \uC138\uACE0, \uBC1B\uB294 \uD53C\uD574 \u221215%", hp: 4, dmg: 2.4, skillName: "\uBC29\uD328\uCE58\uAE30", skill: "\uBC29\uD328\uCE58\uAE30: \uB458\uB808\uC758 \uC65C\uAD70 \uC5EC\uC12F\uC744 \uBCA0\uACE0 \uC7A0\uAE50 \uAD73\uD78C\uB2E4", skill2Name: "\uC5F0\uD658\uBCA0\uAE30", skill2: "\uC5F0\uD658\uBCA0\uAE30: \uAC00\uC7A5 \uC13C \uC801 \uD558\uB098\uB97C \uC138 \uBC88 \uC5F0\uB2EC\uC544 \uBCA4\uB2E4 (150%\uC529) \u2014 \uC7A5\uC218 \uC7A1\uC774", cd2: 10, skill3Name: "\uBC29\uD328 \uB3CC\uC9C4", skill3: "\uBC29\uD328 \uB3CC\uC9C4: \uBC29\uD328\uB97C \uC55E\uC138\uC6CC \uB0B4\uB2EC\uB824 \uAE38 \uC704\uC758 \uC65C\uAD70\uC744 \uCE58\uACE0 1.2\uCD08 \uAD73\uD78C\uB2E4 (180%)", cd3: 12, skill4Name: "\uBC29\uD328 \uB358\uC9C0\uAE30", skill4: "\uBC29\uD328 \uB358\uC9C0\uAE30: \uB358\uC9C4 \uBC29\uD328\uAC00 \uC65C\uAD70 \uB2E4\uC12F \uC0AC\uC774\uB97C \uD280\uC5B4 \uB2E4\uB2CC\uB2E4 (160%\uC529)", cd4: 16 },
-    guard: { name: "\uD0F1\uCEE4", art: "shield", look: "ltGuard", color: "#7fd1ff", scale: 1.42, desc: "\uCCA0\uAC11 \u2014 \uCCB4\uB825\uC774 \uC544\uC8FC \uB192\uACE0 \uBC1B\uB294 \uD53C\uD574 \u221235%, \uACF5\uACA9\uC740 \uC57D\uD558\uB2E4", hp: 6.5, dmg: 1.5, skillName: "\uCCA0\uBCBD \uBC00\uCE58\uAE30", skill: "\uCCA0\uBCBD \uBC00\uCE58\uAE30: \uB458\uB808\uC758 \uC65C\uAD70\uC744 \uBC00\uCCD0 \uB0B4\uACE0 \uB098\uB97C \uC870\uAE08 \uCE58\uB8CC\uD55C\uB2E4", skill2Name: "\uCCA0\uC639\uC131", skill2: "\uCCA0\uC639\uC131: 5\uCD08 \uB3D9\uC548 \uBC1B\uB294 \uD53C\uD574 \u221270%, \uB458\uB808\uC758 \uC65C\uAD70\uC744 \uAD73\uD78C\uB2E4", cd2: 16, skill3Name: "\uC9C0\uC9C4 \uAC15\uD0C0", skill3: "\uC9C0\uC9C4 \uAC15\uD0C0: \uB545\uC744 \uB0B4\uB9AC\uCCD0 \uC55E\uCABD \uBD80\uCC44\uAF34\uC758 \uC65C\uAD70\uC744 \uB744\uC6B0\uACE0 \uAD73\uD78C\uB2E4 (160%)", cd3: 14, skill4Name: "\uB04C\uC5B4\uB2F9\uAE30\uAE30", skill4: "\uB04C\uC5B4\uB2F9\uAE30\uAE30: \uB458\uB808\uC758 \uC65C\uAD70 \uC5EC\uB35F\uC744 \uC81C \uC55E\uC73C\uB85C \uB04C\uC5B4\uBAA8\uC740\uB2E4 \u2014 \uBB49\uCE5C \uC801\uC740 \uAD11\uC5ED\uC758 \uBC25\uC774\uB2E4 (80%)", cd4: 18 },
-    bow: { name: "\uAD81\uC218", art: "archer", look: "ltBow", color: "#a6e07a", desc: "\uB4A4\uC5D0\uC11C \uC3DC\uB2E4 \u2014 \uBE68\uB9AC \uC3D8\uACE0 \uBA40\uB9AC \uB2FF\uB294\uB2E4", hp: 2.2, dmg: 2.6, skillName: "\uC18D\uC0AC", skill: "\uC18D\uC0AC: \uC65C\uAD70 \uBA38\uB9AC \uC704\uB85C \uD654\uC0B4 \uC5EC\uB35F \uBC1C", skill2Name: "\uC800\uACA9", skill2: "\uC800\uACA9: \uBA40\uB9AC \uC788\uB294 \uAC00\uC7A5 \uC13C \uC801 \uD558\uB098\uB97C \uAFF0\uB6AB\uB294\uB2E4 (\uACF5\uACA9\uC758 700%)", cd2: 11, skill3Name: "\uBD80\uCC44\uC0B4", skill3: "\uBD80\uCC44\uC0B4: \uD654\uC0B4 \uC77C\uACF1 \uBC1C\uC744 \uBD80\uCC44\uAF34\uB85C \uD55C\uAEBC\uBC88\uC5D0 \uC3DC\uB2E4 (130%\uC529)", cd3: 10, skill4Name: "\uC5F0\uC0AC", skill4: "\uC5F0\uC0AC: \uAC00\uC7A5 \uC13C \uC801 \uD558\uB098\uC5D0\uAC8C \uC5F4 \uBC1C\uC744 \uC787\uB2EC\uC544 \uC3DC\uB2E4 (70%\uC529)", cd4: 15 },
-    heal: { name: "\uD790\uB7EC", art: "monk", look: "ltHeal", color: "#8ef0c0", desc: "\uC758\uC2B9 \u2014 \uB4A4\uC5D0\uC11C \uB098\uC640 \uAD70\uC0AC\uB97C \uCE58\uB8CC\uD55C\uB2E4, \uACF5\uACA9\uC740 \uC57D\uD558\uB2E4", hp: 3.2, dmg: 1, skillName: "\uC57D\uC190", skill: "\uC57D\uC190: \uB098\uB97C 12%, \uAC00\uAE4C\uC6B4 \uAD70\uC0AC\uB97C 30% \uCE58\uB8CC\uD55C\uB2E4 (7\uCD08\uB9C8\uB2E4)", skill2Name: "\uBD81\uB3CB\uAE30", skill2: "\uBD81\uB3CB\uAE30: 6\uCD08 \uB3D9\uC548 \uC628 \uAD70\uC0AC\uC758 \uACF5\uACA9 +20%", cd2: 18, skill3Name: "\uBCF4\uD638\uB9C9", skill3: "\uBCF4\uD638\uB9C9: \uB0B4\uAC00 \uC704\uD0DC\uB85C\uC6B0\uBA74 3\uCD08 \uB3D9\uC548 \uB0B4\uAC00 \uBC1B\uB294 \uD53C\uD574\uB97C \uD06C\uAC8C \uC904\uC778\uB2E4 (20\uCD08\uB9C8\uB2E4)", cd3: 20, skill4Name: "\uC815\uD654\uC758 \uBE5B", skill4: "\uC815\uD654\uC758 \uBE5B: \uB458\uB808\uC758 \uC65C\uAD70\uC744 \uD0DC\uC6B0\uACE0(150%) \uAC00\uAE4C\uC6B4 \uAD70\uC0AC\uB97C 12% \uCE58\uB8CC\uD55C\uB2E4", cd4: 14 },
-    horse: { name: "\uAE30\uBCD1", art: "horse", look: "ltHorse", color: "#e0a6ff", desc: "\uB9D0\uC744 \uD0C4\uB2E4 \u2014 \uAC00\uC7A5 \uBA40\uB9AC \uCAD3\uACE0 \uBE60\uB974\uB2E4 (\uC131\uBCBD\uC5D0\uC11C\uB294 \uB0B4\uB824\uC11C \uC2F8\uC6B4\uB2E4)", hp: 3.6, dmg: 2.8, skillName: "\uC9D3\uBC1F\uAE30", skill: "\uC9D3\uBC1F\uAE30: \uB9D0\uC774 \uC55E\uBC1C\uC744 \uB4E4\uC5B4 \uB0B4\uB9AC\uCC0D\uB294\uB2E4 \u2014 \uB458\uB808 \uC5EC\uB35F\uC744 \uAD73\uD788\uACE0(1.2\uCD08) \uACF5\uC911\uC5D0 \uB744\uC6B4\uB2E4 (\uACF5\uACA9\uC758 140%)", skill2Name: "\uB3CC\uACA9", skill2: "\uB3CC\uACA9: \uB9D0\uC744 \uBAB0\uC544 \uC65C\uAD70 \uC0AC\uC774\uB97C \uB6AB\uACE0 \uC9C0\uB098\uAC00\uBA70 \uAE38 \uC704\uC758 \uC801\uC744 \uCE58\uC5B4 \uB0A0\uB9B0\uB2E4 (200%)", cd2: 12, skill3Name: "\uC5F0\uC18D \uB3CC\uACA9", skill3: "\uC5F0\uC18D \uB3CC\uACA9: \uC138 \uBC88 \uC787\uB2EC\uC544 \uCE58\uACE0 \uC9C0\uB098\uAC04\uB2E4 (130%\uC529)", cd3: 16, skill4Name: "\uCC3D \uD22C\uCC99", skill4: "\uCC3D \uD22C\uCC99: \uAC00\uC7A5 \uC13C \uC801\uC5D0\uAC8C \uCC3D\uC744 \uB358\uC9C4\uB2E4 \u2014 \uAE38 \uC704\uC758 \uC801\uB3C4 \uAFF0\uB6AB\uB294\uB2E4 (450%)", cd4: 14 }
+    van: { name: "\uCC3D\uC7A1\uC774", art: "spear", look: "ltVan", color: "#ff9a5c", desc: "\uC55E\uC5D0\uC11C \uB4E4\uC774\uBC1B\uB294\uB2E4 \u2014 \uBA40\uB9AC\uAE4C\uC9C0 \uCAD3\uACE0 \uACF5\uACA9\uC774 \uC138\uB2E4", hp: 3.2, dmg: 3, skillName: "\uD729\uC4F8\uAE30", skill: "\uD729\uC4F8\uAE30: \uB458\uB808\uC758 \uC65C\uAD70 \uB2E4\uC12F\uC744 \uD06C\uAC8C \uBCA0\uC5B4 \uB0A0\uB9B0\uB2E4", skill2Name: "\uAD00\uD1B5\uCC3D", skill2: "\uAD00\uD1B5\uCC3D: \uC55E\uC73C\uB85C \uAE38\uAC8C \uCC14\uB7EC \uD55C \uC904\uC758 \uC65C\uAD70\uC744 \uAFF0\uB6AB\uB294\uB2E4 (\uACF5\uACA9\uC758 320%)", cd2: 12, skill3Name: "\uD68C\uC624\uB9AC", skill3: "\uD68C\uC624\uB9AC: 1.6\uCD08 \uB3D9\uC548 \uCC3D\uC744 \uB3CC\uB9AC\uBA70 \uB458\uB808\uB97C \uACC4\uC18D \uBCA4\uB2E4 (0.2\uCD08\uB9C8\uB2E4 55%)", cd3: 15, skill4Name: "\uB3C4\uC57D \uAC15\uD0C0", skill4: "\uB3C4\uC57D \uAC15\uD0C0: \uC65C\uAD70\uC774 \uBAB0\uB9B0 \uACF3\uC73C\uB85C \uB6F0\uC5B4\uB4E4\uC5B4 \uB0B4\uB824\uCC0D\uB294\uB2E4 \u2014 \uB458\uB808\uB97C \uB744\uC6B0\uACE0 \uAD73\uD78C\uB2E4 (240%)", cd4: 20, skill5Name: "\uCC9C\uC9C0\uAC1C\uBCBD", skill5: "\uCC9C\uC9C0\uAC1C\uBCBD: \uD558\uB298\uB85C \uC19F\uC558\uB2E4 \uB0B4\uB9AC\uCC0D\uB294\uB2E4 \u2014 \uB113\uC740 \uB458\uB808\uC758 \uC65C\uAD70\uC744 \uBAA8\uB450 \uB744\uC6B4\uB2E4 (500%)", cd5: 40 },
+    sword: { name: "\uAC80\uBC29\uD328", art: "shield", look: "ltSword", color: "#ffd35c", desc: "\uCE7C\uACFC \uBC29\uD328 \u2014 \uACE0\uB8E8 \uC138\uACE0, \uBC1B\uB294 \uD53C\uD574 \u221215%", hp: 4, dmg: 2.4, skillName: "\uBC29\uD328\uCE58\uAE30", skill: "\uBC29\uD328\uCE58\uAE30: \uB458\uB808\uC758 \uC65C\uAD70 \uC5EC\uC12F\uC744 \uBCA0\uACE0 \uC7A0\uAE50 \uAD73\uD78C\uB2E4", skill2Name: "\uC5F0\uD658\uBCA0\uAE30", skill2: "\uC5F0\uD658\uBCA0\uAE30: \uAC00\uC7A5 \uC13C \uC801 \uD558\uB098\uB97C \uC138 \uBC88 \uC5F0\uB2EC\uC544 \uBCA4\uB2E4 (150%\uC529) \u2014 \uC7A5\uC218 \uC7A1\uC774", cd2: 10, skill3Name: "\uBC29\uD328 \uB3CC\uC9C4", skill3: "\uBC29\uD328 \uB3CC\uC9C4: \uBC29\uD328\uB97C \uC55E\uC138\uC6CC \uB0B4\uB2EC\uB824 \uAE38 \uC704\uC758 \uC65C\uAD70\uC744 \uCE58\uACE0 1.2\uCD08 \uAD73\uD78C\uB2E4 (180%)", cd3: 12, skill4Name: "\uBC29\uD328 \uB358\uC9C0\uAE30", skill4: "\uBC29\uD328 \uB358\uC9C0\uAE30: \uB358\uC9C4 \uBC29\uD328\uAC00 \uC65C\uAD70 \uB2E4\uC12F \uC0AC\uC774\uB97C \uD280\uC5B4 \uB2E4\uB2CC\uB2E4 (160%\uC529)", cd4: 16, skill5Name: "\uAC80\uBB34", skill5: "\uAC80\uBB34: \uB458\uB808\uC758 \uC65C\uAD70 \uC0AC\uC774\uB97C \uB204\uBE44\uBA70 \uC5F4\uB450 \uBC88 \uBCA4\uB2E4 (140%\uC529)", cd5: 36 },
+    guard: { name: "\uD0F1\uCEE4", art: "shield", look: "ltGuard", color: "#7fd1ff", scale: 1.42, desc: "\uCCA0\uAC11 \u2014 \uCCB4\uB825\uC774 \uC544\uC8FC \uB192\uACE0 \uBC1B\uB294 \uD53C\uD574 \u221235%, \uACF5\uACA9\uC740 \uC57D\uD558\uB2E4", hp: 6.5, dmg: 1.5, skillName: "\uCCA0\uBCBD \uBC00\uCE58\uAE30", skill: "\uCCA0\uBCBD \uBC00\uCE58\uAE30: \uB458\uB808\uC758 \uC65C\uAD70\uC744 \uBC00\uCCD0 \uB0B4\uACE0 \uB098\uB97C \uC870\uAE08 \uCE58\uB8CC\uD55C\uB2E4", skill2Name: "\uCCA0\uC639\uC131", skill2: "\uCCA0\uC639\uC131: 5\uCD08 \uB3D9\uC548 \uBC1B\uB294 \uD53C\uD574 \u221270%, \uB458\uB808\uC758 \uC65C\uAD70\uC744 \uAD73\uD78C\uB2E4", cd2: 16, skill3Name: "\uC9C0\uC9C4 \uAC15\uD0C0", skill3: "\uC9C0\uC9C4 \uAC15\uD0C0: \uB545\uC744 \uB0B4\uB9AC\uCCD0 \uC55E\uCABD \uBD80\uCC44\uAF34\uC758 \uC65C\uAD70\uC744 \uB744\uC6B0\uACE0 \uAD73\uD78C\uB2E4 (160%)", cd3: 14, skill4Name: "\uB04C\uC5B4\uB2F9\uAE30\uAE30", skill4: "\uB04C\uC5B4\uB2F9\uAE30\uAE30: \uB458\uB808\uC758 \uC65C\uAD70 \uC5EC\uB35F\uC744 \uC81C \uC55E\uC73C\uB85C \uB04C\uC5B4\uBAA8\uC740\uB2E4 \u2014 \uBB49\uCE5C \uC801\uC740 \uAD11\uC5ED\uC758 \uBC25\uC774\uB2E4 (80%)", cd4: 18, skill5Name: "\uBD88\uAD34", skill5: "\uBD88\uAD34: 6\uCD08 \uB3D9\uC548 \uC800\uB294 \uAC70\uC758 \uC548 \uB2E4\uCE58\uACE0, \uC628 \uAD70\uC0AC\uAC00 \uBC1B\uB294 \uD53C\uD574 \u221245%", cd5: 45 },
+    bow: { name: "\uAD81\uC218", art: "archer", look: "ltBow", color: "#a6e07a", desc: "\uB4A4\uC5D0\uC11C \uC3DC\uB2E4 \u2014 \uBE68\uB9AC \uC3D8\uACE0 \uBA40\uB9AC \uB2FF\uB294\uB2E4", hp: 2.2, dmg: 2.6, skillName: "\uC18D\uC0AC", skill: "\uC18D\uC0AC: \uC65C\uAD70 \uBA38\uB9AC \uC704\uB85C \uD654\uC0B4 \uC5EC\uB35F \uBC1C", skill2Name: "\uC800\uACA9", skill2: "\uC800\uACA9: \uBA40\uB9AC \uC788\uB294 \uAC00\uC7A5 \uC13C \uC801 \uD558\uB098\uB97C \uAFF0\uB6AB\uB294\uB2E4 (\uACF5\uACA9\uC758 700%)", cd2: 11, skill3Name: "\uBD80\uCC44\uC0B4", skill3: "\uBD80\uCC44\uC0B4: \uD654\uC0B4 \uC77C\uACF1 \uBC1C\uC744 \uBD80\uCC44\uAF34\uB85C \uD55C\uAEBC\uBC88\uC5D0 \uC3DC\uB2E4 (130%\uC529)", cd3: 10, skill4Name: "\uC5F0\uC0AC", skill4: "\uC5F0\uC0AC: \uAC00\uC7A5 \uC13C \uC801 \uD558\uB098\uC5D0\uAC8C \uC5F4 \uBC1C\uC744 \uC787\uB2EC\uC544 \uC3DC\uB2E4 (70%\uC529)", cd4: 15, skill5Name: "\uD654\uC0B4\uBE44", skill5: "\uD654\uC0B4\uBE44: \uC65C\uAD70\uC774 \uBAB0\uB9B0 \uC790\uB9AC\uC5D0 2\uCD08 \uB3D9\uC548 \uD654\uC0B4 \uC11C\uB978 \uBC1C\uC774 \uC3DF\uC544\uC9C4\uB2E4 (110%\uC529)", cd5: 38 },
+    heal: { name: "\uD790\uB7EC", art: "monk", look: "ltHeal", color: "#8ef0c0", desc: "\uC758\uC2B9 \u2014 \uB4A4\uC5D0\uC11C \uB098\uC640 \uAD70\uC0AC\uB97C \uCE58\uB8CC\uD55C\uB2E4, \uACF5\uACA9\uC740 \uC57D\uD558\uB2E4", hp: 3.2, dmg: 1, skillName: "\uC57D\uC190", skill: "\uC57D\uC190: \uB098\uB97C 12%, \uAC00\uAE4C\uC6B4 \uAD70\uC0AC\uB97C 30% \uCE58\uB8CC\uD55C\uB2E4 (7\uCD08\uB9C8\uB2E4)", skill2Name: "\uBD81\uB3CB\uAE30", skill2: "\uBD81\uB3CB\uAE30: 6\uCD08 \uB3D9\uC548 \uC628 \uAD70\uC0AC\uC758 \uACF5\uACA9 +20%", cd2: 18, skill3Name: "\uBCF4\uD638\uB9C9", skill3: "\uBCF4\uD638\uB9C9: \uB0B4\uAC00 \uC704\uD0DC\uB85C\uC6B0\uBA74 3\uCD08 \uB3D9\uC548 \uB0B4\uAC00 \uBC1B\uB294 \uD53C\uD574\uB97C \uD06C\uAC8C \uC904\uC778\uB2E4 (20\uCD08\uB9C8\uB2E4)", cd3: 20, skill4Name: "\uC815\uD654\uC758 \uBE5B", skill4: "\uC815\uD654\uC758 \uBE5B: \uB458\uB808\uC758 \uC65C\uAD70\uC744 \uD0DC\uC6B0\uACE0(150%) \uAC00\uAE4C\uC6B4 \uAD70\uC0AC\uB97C 12% \uCE58\uB8CC\uD55C\uB2E4", cd4: 14, skill5Name: "\uB300\uD68C\uBCF5", skill5: "\uB300\uD68C\uBCF5: \uC628 \uAD70\uC0AC\uC758 \uCCB4\uB825\uC744 40%, \uB0B4 \uCCB4\uB825\uC744 30% \uCC44\uC6B4\uB2E4", cd5: 45 },
+    horse: { name: "\uAE30\uBCD1", art: "horse", look: "ltHorse", color: "#e0a6ff", desc: "\uB9D0\uC744 \uD0C4\uB2E4 \u2014 \uAC00\uC7A5 \uBA40\uB9AC \uCAD3\uACE0 \uBE60\uB974\uB2E4 (\uC131\uBCBD\uC5D0\uC11C\uB294 \uB0B4\uB824\uC11C \uC2F8\uC6B4\uB2E4)", hp: 3.6, dmg: 2.8, skillName: "\uC9D3\uBC1F\uAE30", skill: "\uC9D3\uBC1F\uAE30: \uB9D0\uC774 \uC55E\uBC1C\uC744 \uB4E4\uC5B4 \uB0B4\uB9AC\uCC0D\uB294\uB2E4 \u2014 \uB458\uB808 \uC5EC\uB35F\uC744 \uAD73\uD788\uACE0(1.2\uCD08) \uACF5\uC911\uC5D0 \uB744\uC6B4\uB2E4 (\uACF5\uACA9\uC758 140%)", skill2Name: "\uB3CC\uACA9", skill2: "\uB3CC\uACA9: \uB9D0\uC744 \uBAB0\uC544 \uC65C\uAD70 \uC0AC\uC774\uB97C \uB6AB\uACE0 \uC9C0\uB098\uAC00\uBA70 \uAE38 \uC704\uC758 \uC801\uC744 \uCE58\uC5B4 \uB0A0\uB9B0\uB2E4 (200%)", cd2: 12, skill3Name: "\uC5F0\uC18D \uB3CC\uACA9", skill3: "\uC5F0\uC18D \uB3CC\uACA9: \uC138 \uBC88 \uC787\uB2EC\uC544 \uCE58\uACE0 \uC9C0\uB098\uAC04\uB2E4 (130%\uC529)", cd3: 16, skill4Name: "\uCC3D \uD22C\uCC99", skill4: "\uCC3D \uD22C\uCC99: \uAC00\uC7A5 \uC13C \uC801\uC5D0\uAC8C \uCC3D\uC744 \uB358\uC9C4\uB2E4 \u2014 \uAE38 \uC704\uC758 \uC801\uB3C4 \uAFF0\uB6AB\uB294\uB2E4 (450%)", cd4: 14, skill5Name: "\uCC9C\uAD70\uB9CC\uB9C8", skill5: "\uCC9C\uAD70\uB9CC\uB9C8: \uB2E4\uC12F \uBC88 \uC787\uB2EC\uC544 \uC804\uC5F4\uC744 \uAC00\uB85C\uC9C0\uB978\uB2E4 (160%\uC529)", cd5: 40 }
   };
   var LT_CANDS = [
     { name: "\uAC15\uB3CC\uC1E0", style: "van", look: "\uBD89\uC740 \uAC11\uC637\uC5D0 \uC5B8\uC6D4\uB3C4. \uC8FC\uD669 \uC601\uAE30" },
@@ -7778,7 +7778,9 @@ button:focus-visible {
     { name: "\uCD5C\uB0A0\uC318", style: "horse", look: "\uAC80\uC740 \uB9D0\uC744 \uD0C4 \uBCF4\uB78F\uBE5B \uAC11\uC637\uC758 \uAE30\uBCD1" }
   ];
   var LT_NAMES = LT_CANDS.map((c) => c.name);
-  var LT_SKILL_LV = [1, 1, 15, 35];
+  var LT_SKILL_LV = [1, 1, 15, 35, 100];
+  var LT_AWAKE = [100, 200, 300];
+  var ltAwake = (l) => LT_AWAKE.filter((v) => (l.lv || 1) >= v).length;
   var LT_COSTS = [0, 3e3, 1e4, 3e4, 8e4, 2e5];
   var ltCost = (d) => LT_COSTS[Math.min(LT_COSTS.length - 1, (d.lts || []).length)];
   var ltOut = (d) => (d.lts || []).filter((l) => l.out && l.post == null);
@@ -9334,7 +9336,7 @@ button:focus-visible {
     }
     /** 내가 치는 한 대에 치명타를 굴린다 — 바탕 5% + 장비 옵션(많아야 75%), 터지면 ×(1.5 + 치명타 피해 옵션). */
     deal(h, foe) {
-      const m = this.inSkill ? 1 : spPre(this.sp, foe);
+      const m = this.inSkill ? this.skillMul || 1 : spPre(this.sp, foe);
       if (m !== 1) h = { ...h, dmg: Math.round(h.dmg * m) };
       return Math.random() < this.crit ? { ...h, dmg: Math.round(h.dmg * this.critMul), ltCrit: true } : h;
     }
@@ -9348,6 +9350,13 @@ button:focus-visible {
       this.regenAdd = (o.regen || 0) / 100;
       this.cleave = G.cleave;
       this.sp = G.sp;
+      {
+        const aw = ltAwake(this.lt);
+        this.skillMul = 1 + 0.3 * aw;
+        this.cdMul *= 1 - 0.1 * aw;
+        this.scale = (LT_STYLES[this.lt.style].scale || 1.24) * (1 + 0.05 * aw);
+        if (this.aura) this.aura.tier = 2 + aw;
+      }
       const m = ltMul(S.save, this.lt);
       this.R = { ...this.baseR, hp: m.hp, dmg: m.dmg, name: this.lt.name };
       const st = S.stats || statsOf(S.save);
@@ -9374,10 +9383,10 @@ button:focus-visible {
         this.inSkill = true;
         for (const e of due) e.run();
       }
-      for (const n of [3, 4]) {
+      for (const n of [5, 3, 4]) {
         if (this.lt.lv < LT_SKILL_LV[n - 1]) continue;
         const key = "sk" + n + "T", ST = LT_STYLES[this.lt.style];
-        this[key] = (this[key] ?? rand(6, 12)) - dt;
+        this[key] = (this[key] ?? (n === 5 ? rand(12, 18) : rand(6, 12))) - dt;
         if (this[key] > 0) continue;
         this.inSkill = true;
         if (this.skillX(n)) {
@@ -9546,6 +9555,89 @@ button:focus-visible {
         if (!me.dead) run();
       } });
       const k = style + n;
+      if (k === "van5") {
+        const list = within(5);
+        if (list.length < 4) return false;
+        this.act = { kind: "slam", t: 0.4, dur: 0.4, turns: 0 };
+        for (const f of list.slice(0, 16)) {
+          const [ux, uy] = toward2(f);
+          strike2(f, 5, 20, 0.9, ux, uy, 1.2);
+        }
+        ring(this.x, this.y, 0.3, 5, "rgba(255,154,92,0.95)", 0.4);
+        ring(this.x, this.y, 0.3, 3.2, "rgba(255,230,180,0.9)", 0.3);
+        dust(this.x, this.y, 0, 1, 18);
+        shake && shake(0.5, 0.4);
+        sfx("skSlam", 1, 0.05);
+        return true;
+      }
+      if (k === "sword5") {
+        if (within(5).length < 3) return false;
+        for (let i = 0; i < 12; i++) later2(i * 0.09, () => {
+          const list = within(5);
+          if (!list.length) return;
+          const f = list[Math.floor(Math.random() * list.length)], [ux, uy] = toward2(f);
+          if (!S.line.siege) {
+            ghost(me, 0.22);
+            me.x = f.x - ux * 0.8;
+            me.y = f.y - uy * 0.8;
+          }
+          strike2(f, 1.4, 4, 0.2, ux, uy);
+          wave(f.x, f.y, i % 2 ? -uy : uy, i % 2 ? ux : -ux, 1.2, c, 8, 0.2);
+          if (i % 3 === 0) sfx("skCut", 0.4, 0.2);
+        });
+        return true;
+      }
+      if (k === "guard5") {
+        if (within(4).length < 3) return false;
+        this.ironT = 6;
+        S.buffs.wallT = Math.max(S.buffs.wallT || 0, 6);
+        ring(this.x, this.y, 0.4, 8, "rgba(127,209,255,0.7)", 0.6);
+        ring(this.x, this.y, 0.8, 1.4, "rgba(220,240,255,0.95)", 1.2);
+        this.act = { kind: "slam", t: 0.36, dur: 0.36, turns: 0 };
+        sfx("skOrder", 0.7, 0.05);
+        return true;
+      }
+      if (k === "bow5") {
+        const t = toughest(within(13));
+        if (!t || within(3.5, t.x, t.y).length < 3) return false;
+        const cx = t.x, cy = t.y;
+        for (let i = 0; i < 30; i++) later2(i * 0.066, () => {
+          const a = Math.random() * 6.283, r = Math.random() * 3.2, x = cx + Math.cos(a) * r, y = cy + Math.sin(a) * r;
+          thrust(x - 0.4, y + 1.8, 0.25, -1, 1.7, c, 0.9);
+          const f = closest(within(1.3, x, y), x, y);
+          if (f) strike2(f, 1.1, 2, 0.15, 0.2, -0.2);
+          if (i % 6 === 0) sfx("skArrows", 0.35, 0.2);
+        });
+        ring(cx, cy, 3.4, 3.5, "rgba(166,224,122,0.8)", 2);
+        return true;
+      }
+      if (k === "heal5") {
+        const hurt = S.J.filter((u) => !u.dead && u.hp < u.maxHp * 0.7);
+        if (hurt.length < 5 && !(S.player && !S.player.dead && S.player.hp < S.player.maxHp * 0.4)) return false;
+        for (const u of S.J) if (!u.dead) u.heal(Math.round(u.maxHp * (u === S.player ? 0.3 : 0.4)));
+        ring(this.x, this.y, 0.4, 10, "rgba(142,240,192,0.7)", 0.7);
+        if (S.player && !S.player.dead) ring(S.player.x, S.player.y, 0.3, 2, "rgba(220,255,240,0.95)", 0.6);
+        sfx("skBuff", 0.9, 0.05);
+        return true;
+      }
+      if (k === "horse5") {
+        if (S.line.siege || within(8).length < 4) return false;
+        for (let i = 0; i < 5; i++) later2(i * 0.26, () => {
+          const t = closest(within(8));
+          if (!t) return;
+          const [dx, dy] = toward2(t), row = onPath(dx, dy, 4.2, 1.4);
+          for (let j = 0; j < 4; j++) {
+            ghost(me, 0.3);
+            me.x += dx * 0.95;
+            me.y += dy * 0.95;
+          }
+          for (const f of row.slice(0, 8)) strike2(f, 1.6, 18, 0.4, dx, dy, 0.7);
+          wave(me.x, me.y, dx, dy, 1.7, c, 5, 0.25);
+          dust(me.x, me.y, -dx, -dy, 5);
+          sfx("skHorse", 0.5, 0.1);
+        });
+        return true;
+      }
       if (k === "bow3") {
         const t = closest(within(11));
         if (!t) return false;
@@ -13337,9 +13429,13 @@ button:focus-visible {
             card.appendChild(el("small", null, `\uBD80\uD558 \uB300\uBE44 \uCCB4\uB825 \xD7${m.hp.toFixed(1)} \xB7 \uACF5\uACA9 \xD7${m.dmg.toFixed(1)} \xB7 \uACBD\uD5D8 ${num(Math.round(l.xp))}${l.lv >= d.level ? " (\uB0B4 \uB808\uBCA8\uAE4C\uC9C0\uB9CC \uC624\uB978\uB2E4)" : ""}`));
             card.appendChild(el("small", null, `\uAE30\uC220 \u2460 ${S0.skill}`));
             card.appendChild(el("small", null, `\uAE30\uC220 \u2461 ${S0.skill2}`));
-            for (const n of [3, 4]) {
+            for (const n of [3, 4, 5]) {
               const open = l.lv >= LT_SKILL_LV[n - 1];
-              card.appendChild(el("small", open ? null : "dim", `\uAE30\uC220 ${n === 3 ? "\u2462" : "\u2463"} ${S0["skill" + n]}${open ? "" : ` \u2014 Lv ${LT_SKILL_LV[n - 1]} \uC5D0 \uC5F4\uB9B0\uB2E4`}`));
+              card.appendChild(el("small", open ? n === 5 ? "jo-lt-opt" : null : "dim", `${n === 5 ? "\uAD81\uADF9\uAE30" : "\uAE30\uC220 " + (n === 3 ? "\u2462" : "\u2463")} ${S0["skill" + n]}${open ? "" : ` \u2014 Lv ${LT_SKILL_LV[n - 1]} \uC5D0 \uC5F4\uB9B0\uB2E4`}`));
+            }
+            {
+              const aw = ltAwake(l), nx = LT_AWAKE[aw];
+              card.appendChild(el("small", aw ? "jo-lt-opt" : "dim", `\uAC01\uC131 ${aw}\uB2E8${aw ? ` \u2014 \uAE30\uC220 \uD53C\uD574 +${aw * 30}% \xB7 \uAE30\uC220 \uC7AC\uC0AC\uC6A9 \u2212${aw * 10}%` : ""}${nx ? ` \xB7 \uB2E4\uC74C \uAC01\uC131 Lv ${nx}` : " (\uB05D)"}`));
             }
             {
               const t = ltOptText(d, l);
@@ -13404,7 +13500,7 @@ button:focus-visible {
               const hd = el("div", "jo-lt-head");
               hd.append(pic(ICONS["unit_j_" + S0.art] ? "unit_j_" + S0.art : "unit_j_spear", "jo-unit-pic"), el("b", null, `${c.name} \xB7 ${S0.name}`));
               card.appendChild(hd);
-              card.append(el("small", null, `${c.look} \u2014 ${S0.desc}`), el("small", null, `\uBD80\uD558 \uB300\uBE44 \uCCB4\uB825 \xD7${S0.hp} \xB7 \uACF5\uACA9 \xD7${S0.dmg}`), el("small", null, `\uAE30\uC220 \u2460 ${S0.skill}`), el("small", null, `\uAE30\uC220 \u2461 ${S0.skill2}`), el("small", "dim", `\uAE30\uC220 \u2462 ${S0.skill3} \u2014 Lv ${LT_SKILL_LV[2]}`), el("small", "dim", `\uAE30\uC220 \u2463 ${S0.skill4} \u2014 Lv ${LT_SKILL_LV[3]}`));
+              card.append(el("small", null, `${c.look} \u2014 ${S0.desc}`), el("small", null, `\uBD80\uD558 \uB300\uBE44 \uCCB4\uB825 \xD7${S0.hp} \xB7 \uACF5\uACA9 \xD7${S0.dmg}`), el("small", null, `\uAE30\uC220 \u2460 ${S0.skill}`), el("small", null, `\uAE30\uC220 \u2461 ${S0.skill2}`), el("small", "dim", `\uAE30\uC220 \u2462 ${S0.skill3} \u2014 Lv ${LT_SKILL_LV[2]}`), el("small", "dim", `\uAE30\uC220 \u2463 ${S0.skill4} \u2014 Lv ${LT_SKILL_LV[3]}`), el("small", "dim", `\uAD81\uADF9\uAE30 ${S0.skill5} \u2014 Lv ${LT_SKILL_LV[4]}`));
               const b = el("button", "jo-lt-out", cost ? `\uC601\uC785 \xB7 \uC5FD\uC804 ${num(cost)}` : "\uC601\uC785");
               b.disabled = d.coins < cost;
               b.addEventListener("click", () => {
