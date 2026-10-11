@@ -3943,6 +3943,19 @@ button:focus-visible {
   padding-top: 6px;
   border-top: 1px dashed #ffffff1a;
 }
+.jo-auto.jo-rice {
+  color: #e9f6dc;
+  background: #2f4a33;
+  border-color: #86b17a;
+}
+.jo-auto.jo-rice::before {
+  content: "\1f359";
+  font-size: 10px;
+  margin-right: 5px;
+}
+.jo-auto.jo-rice:disabled {
+  opacity: .45;
+}
 
 </style>
 </head>
@@ -12192,7 +12205,14 @@ button:focus-visible {
       bagSlot = null;
       openTab("land");
     });
-    side.append(autoBtn, orderBtn, baseAlert);
+    const riceBtn = el("button", "jo-auto jo-rice");
+    riceBtn.addEventListener("click", () => {
+      unlockAudio();
+      if (!api.eatRice()) {
+        sfx("click", 0.5, 0);
+      }
+    });
+    side.append(autoBtn, orderBtn, riceBtn, baseAlert);
     const skillBar = el("div", "jo-skills");
     const skillBtns = SKILLS.map((k) => {
       const b = el("button", "jo-skill " + (k.tag === "\uAD70\uB839" ? "order" : "art")), mask = el("i");
@@ -13363,6 +13383,12 @@ button:focus-visible {
         }
       },
       update(dt) {
+        {
+          const R = S.rice, P = S.player, t = R ? R.cd > 0 ? `\uC8FC\uBA39\uBC25 ${R.n} \xB7 ${Math.ceil(R.cd)}\uCD08` : `\uC8FC\uBA39\uBC25 ${R.n} \xB7 \uCCB4\uB825 +40%` : "";
+          if (riceBtn.textContent !== t) riceBtn.textContent = t;
+          const off = !R || R.n <= 0 || R.cd > 0 || !P || P.dead || P.hp >= P.maxHp;
+          if (riceBtn.disabled !== off) riceBtn.disabled = off;
+        }
         const p = S.player, d = S.save;
         if (!p || !S.info) return;
         clock += dt;
@@ -13553,6 +13579,18 @@ button:focus-visible {
       const wx = (e.clientX * dpr - W / 2) / px + S.cam.x, wy = S.cam.y - (e.clientY * dpr - H / 2) / px;
       if (Math.abs(wx - p.x) < 0.9 && wy > p.y - 0.5 && wy < p.y + BODY + 0.5) ui.openSheet();
     });
+    const RICE_N = 3, RICE_HEAL = 0.4, RICE_CD = 8;
+    function eatRice() {
+      const P = S.player, R = S.rice;
+      if (S.mode !== "battle" || !P || P.dead || !R || R.n <= 0 || R.cd > 0 || P.hp >= P.maxHp) return false;
+      R.n--;
+      R.cd = RICE_CD;
+      P.heal(Math.round(P.maxHp * RICE_HEAL));
+      ring(P.x, P.y, 0.3, 1.6, "rgba(140,220,140,0.9)", 0.45);
+      popup(P.x, P.y + 2.2, "\uC8FC\uBA39\uBC25", "#b9e6a4", 1.1);
+      sfx("skBuff", 0.5, 0.1);
+      return true;
+    }
     const SIM = { downs: 0, losses: 0 };
     let now = 0, pending = null, saveT = 0, fieldKey = "", baseNews = null;
     const lootImg = new Image();
@@ -13620,6 +13658,7 @@ button:focus-visible {
         writeSave(S.save);
         applyAuto();
       },
+      eatRice,
       rankUp: doRankUp,
       bought(kind) {
         if (kind === "loot") ltTidy(S.save);
@@ -13766,6 +13805,7 @@ button:focus-visible {
       S.mode = "battle";
       pending = null;
       resetSpecials();
+      S.rice = { n: RICE_N + Math.floor((S.save.rank || 0) / 5), cd: 0 };
       startBattleAudio();
       const info = S.info = detour ? detourInfo(detour.i, detour.kind) : stageInfo(stage), siege = info.kind === "defend";
       S.reserveMul = reserveMul(S.save);
@@ -14150,6 +14190,8 @@ button:focus-visible {
       updatePickups(dt);
       updateFlag(dt);
       for (let i = S.fallen.length - 1; i >= 0; i--) if ((S.fallen[i].t += dt) > FALLEN_STAY + FALLEN_FADE) S.fallen.splice(i, 1);
+      if (S.rice && S.rice.cd > 0) S.rice.cd -= dt;
+      if (S.save.auto && S.player && !S.player.dead && S.player.hp < S.player.maxHp * 0.35) eatRice();
       updateSkills(dt);
       updateSpecials(dt);
       updateEvents(dt);
