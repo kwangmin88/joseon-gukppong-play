@@ -7395,12 +7395,25 @@ button:focus-visible {
     { slot: "weapon", name: "\uAC00\uC4F0\uBAA8\uD1A0 \uD30C\uB3C4\uCC3D" },
     { slot: "armor", name: "\uB098\uACE0\uC57C \uC9C4\uC911\uAC11" },
     { slot: "weapon", name: "\uD558\uCE74\uD0C0 \uB0AB\uCC3D" },
+    { slot: "charm", name: "\uC9C0\uCFE0\uACE0 \uC218\uB85C\uD328" },
     { slot: "armor", name: "\uAD6C\uB9C8\uBAA8\uD1A0 \uD751\uAC11" },
     { slot: "weapon", name: "\uC0AC\uC4F0\uB9C8 \uD654\uC0B0\uCC3D" },
+    { slot: "armor", name: "\uAE30\uB9AC\uC2DC\uB9C8 \uD654\uC0B0\uAC11" },
+    { slot: "charm", name: "\uD734\uAC00 \uD574\uB3CB\uC774\uD328" },
+    { slot: "weapon", name: "\uBD84\uACE0 \uB0A8\uB9CC\uCC3D" },
+    { slot: "armor", name: "\uACE0\uCFE0\uB77C \uAD00\uBB38\uAC11" },
+    { slot: "weapon", name: "\uAC04\uBAAC \uAE09\uB958\uCC3D" },
+    { slot: "charm", name: "\uC2A4\uC624 \uB300\uB0B4\uD328" },
+    { slot: "weapon", name: "\uC544\uD0A4 \uC0BC\uC9C0\uCC3D" },
     { slot: "charm", name: "\uC138\uD1A0 \uC218\uAD70\uD328" },
+    { slot: "armor", name: "\uBE57\uCD94 \uC218\uACF5\uAC11" },
     { slot: "weapon", name: "\uBE44\uC820 \uC7A5\uB3C4\uCC3D" },
+    { slot: "armor", name: "\uC774\uC694 \uC218\uAD70\uAC11" },
+    { slot: "charm", name: "\uC0AC\uB204\uD0A4 \uC21C\uB840\uD328" },
     { slot: "armor", name: "\uD558\uB9AC\uB9C8 \uBC31\uB85C\uAC11" },
     { slot: "weapon", name: "\uC624\uC0AC\uCE74 \uAE08\uCC3D" },
+    { slot: "armor", name: "\uAE30\uC2DC\uC640\uB2E4 \uB2E8\uC9C0\uB9AC\uAC11" },
+    { slot: "weapon", name: "\uC57C\uB9C8\uD1A0 \uACE0\uCC3D" },
     { slot: "charm", name: "\uCC9C\uD558\uC778\uC758 \uC625\uD328" }
   ];
   var uniqueOf = (land) => UNIQUES[land % UNIQUES.length];
@@ -11003,12 +11016,25 @@ button:focus-visible {
     { name: "\uC774\uD0A4\uC12C", castle: "\uAC00\uC4F0\uBAA8\uD1A0\uC131", fields: [["\uD574\uBCC0 \uC0C1\uB959", 0], ["\uC12C \uB4E4\uD310", 1]], siege: 3 },
     { name: "\uD788\uC820", castle: "\uB098\uACE0\uC57C\uC131", fields: [["\uAC00\uB77C\uC4F0 \uD574\uBCC0", 0], ["\uCD9C\uBCD1 \uAE30\uC9C0", 2]], siege: 1 },
     { name: "\uC9C0\uCFE0\uC820", castle: "\uB098\uC9C0\uB9C8\uC131", fields: [["\uD558\uCE74\uD0C0 \uD3EC\uAD6C", 0], ["\uD558\uCE74\uD0C0 \uB4E4\uD310", 2]], siege: 3 },
+    { name: "\uC9C0\uCFE0\uACE0", castle: "\uAD6C\uB8E8\uBA54\uC131", fields: [["\uC9C0\uCFE0\uACE0 \uAC15\uAC00", 1], ["\uC57C\uB098\uAC00\uC640 \uBB3C\uAE38", 2]], siege: 1 },
     { name: "\uD788\uACE0", castle: "\uAD6C\uB9C8\uBAA8\uD1A0\uC131", fields: [["\uAE30\uCFE0\uCE58 \uAC15\uAC00", 1], ["\uC544\uC18C \uB4E4\uD310", 2]], siege: 3 },
     { name: "\uC0AC\uC4F0\uB9C8", castle: "\uAC00\uACE0\uC2DC\uB9C8\uC131", fields: [["\uC13C\uB2E4\uC774 \uAC15\uAC00", 1], ["\uD654\uC0B0\uC7AC \uB4E4\uD310", 3]], siege: 2 },
+    { name: "\uC624\uC2A4\uBBF8", castle: "\uACE0\uCFE0\uBD80\uC131", fields: [["\uAE34\uCF54 \uB9CC \uD574\uBCC0", 0], ["\uAE30\uB9AC\uC2DC\uB9C8 \uC0B0\uC790\uB77D", 3]], siege: 3 },
+    { name: "\uD734\uAC00", castle: "\uC624\uBE44\uC131", fields: [["\uB2C8\uCE58\uB09C \uD574\uBCC0", 0], ["\uC624\uC694\uB3C4 \uAC15\uAC00", 1]], siege: 1 },
+    { name: "\uBD84\uACE0", castle: "\uD6C4\uB098\uC774\uC131", fields: [["\uBCB3\uD478 \uB9CC", 0], ["\uC624\uB178 \uAC15\uAC00", 1]], siege: 2 },
+    { name: "\uBD80\uC820", castle: "\uACE0\uCFE0\uB77C\uC131", fields: [["\uB098\uCE74\uC4F0 \uB4E4\uD310", 2], ["\uAC04\uBAAC \uB098\uB8E8", 0]], siege: 3 },
+    { name: "\uB098\uAC00\uD1A0", castle: "\uAD6C\uC2DC\uC790\uD0A4\uC131", fields: [["\uC2DC\uBAA8\uB178\uC138\uD0A4 \uC0C1\uB959", 0], ["\uC870\uD6C4 \uACE0\uAC2F\uAE38", 3]], siege: 2 },
+    { name: "\uC2A4\uC624", castle: "\uB2E4\uCE74\uBBF8\uB124\uC131", fields: [["\uD638\uD6C4 \uB4E4\uD310", 2], ["\uD6C4\uC2DC\uB178 \uAC15\uAC00", 1]], siege: 1 },
     { name: "\uC544\uD0A4", castle: "\uD788\uB85C\uC2DC\uB9C8\uC131", fields: [["\uC138\uD1A0 \uB0B4\uD574 \uC0C1\uB959", 0], ["\uC624\uD0C0 \uAC15\uAC00", 1]], siege: 2 },
+    { name: "\uBE48\uACE0", castle: "\uBBF8\uD558\uB77C\uC131", fields: [["\uC624\uB178\uBBF8\uCE58 \uD3EC\uAD6C", 0], ["\uC544\uC2DC\uB2E4 \uAC15\uAC00", 1]], siege: 3 },
+    { name: "\uBE57\uCD94", castle: "\uB2E4\uCE74\uB9C8\uC4F0\uC131", fields: [["\uB2E4\uCE74\uD558\uC2DC \uAC15\uAC00", 1], ["\uB2AA\uC9C0 \uB451\uAE38", 2]], siege: 1 },
     { name: "\uBE44\uC820", castle: "\uC624\uCE74\uC57C\uB9C8\uC131", fields: [["\uC0B0\uC694 \uAC00\uB3C4", 2], ["\uC544\uC0AC\uD788 \uAC15\uAC00", 1]], siege: 3 },
+    { name: "\uC774\uC694", castle: "\uB9C8\uC4F0\uC57C\uB9C8\uC131", fields: [["\uC2DC\uCF54\uCFE0 \uC0C1\uB959", 0], ["\uB3C4\uACE0 \uB4E4\uD310", 2]], siege: 2 },
+    { name: "\uC0AC\uB204\uD0A4", castle: "\uB9C8\uB8E8\uAC00\uBA54\uC131", fields: [["\uC0AC\uB204\uD0A4 \uB4E4\uD310", 2], ["\uC2DC\uC640\uCFE0 \uB098\uB8E8", 0]], siege: 3 },
     { name: "\uD558\uB9AC\uB9C8", castle: "\uD788\uBA54\uC9C0\uC131", fields: [["\uC544\uCE74\uC2DC \uD574\uBCC0", 0], ["\uD558\uB9AC\uB9C8 \uB4E4\uD310", 2]], siege: 1 },
     { name: "\uC14B\uC4F0", castle: "\uC624\uC0AC\uCE74\uC131", fields: [["\uC0AC\uCE74\uC774 \uD3EC\uAD6C", 0], ["\uC694\uB3C4 \uAC15\uAC00", 1]], siege: 2 },
+    { name: "\uC774\uC988\uBBF8", castle: "\uAE30\uC2DC\uC640\uB2E4\uC131", fields: [["\uC13C\uC288 \uD574\uBCC0", 0], ["\uAE30\uC288 \uAC00\uB3C4", 2]], siege: 3 },
+    { name: "\uC57C\uB9C8\uD1A0", castle: "\uACE0\uB9AC\uC57C\uB9C8\uC131", fields: [["\uC774\uCF54\uB9C8 \uACE0\uAC2F\uAE38", 3], ["\uB098\uB77C \uBD84\uC9C0", 1]], siege: 1 },
     { name: "\uC57C\uB9C8\uC2DC\uB85C", castle: "\uD6C4\uC2DC\uBBF8\uC131", fields: [["\uC6B0\uC9C0 \uAC15\uAC00", 1], ["\uAD50\uD1A0 \uAC00\uB3C4", 2]], siege: 3 }
   ];
   function stageInfo(stage) {
@@ -12926,12 +12952,12 @@ button:focus-visible {
     });
   }
   var num = (n) => n >= 1e12 ? (n / 1e12).toFixed(2) + "\uC870" : n >= 1e8 ? (n / 1e8).toFixed(2) + "\uC5B5" : n >= 1e4 ? (n / 1e4).toFixed(1) + "\uB9CC" : Math.floor(n).toLocaleString("en-US");
-  var MAP_POS = [[52, 60], [74, 82], [94, 102], [120, 93], [123, 133], [109, 167], [178, 85], [214, 77], [238, 70], [258, 82], [274, 62]];
+  var MAP_POS = [[52, 60], [74, 82], [94, 102], [116, 92], [106, 116], [118, 136], [108, 166], [124, 172], [132, 150], [133, 124], [131, 100], [150, 88], [164, 94], [180, 84], [196, 82], [208, 74], [222, 78], [190, 116], [216, 112], [240, 70], [256, 82], [262, 96], [276, 88], [276, 62]];
   function mapSvg(index, bases = []) {
     const cur = index % LANDS.length, pts = MAP_POS.map((p) => p.join(",")), done = pts.slice(0, cur + 1).join(" ");
     const nodes = LANDS.map((land, i) => {
-      const b = bases.find((q) => q.i % LANDS.length === i), [x2, y] = MAP_POS[i], st = b && b.lost ? "todo lost" : b && b.hit ? "done hit" : i < cur ? "done" : i === cur ? "now" : "todo", up = i >= 6 && i % 2 === 0;
-      return `<g class="${st}"><circle cx="${x2}" cy="${y}" r="${i === cur ? 6 : 4.5}"/>${i === cur || b && b.hit && !b.lost ? `<circle class="pulse" cx="${x2}" cy="${y}" r="9"/>` : ""}<text x="${x2}" y="${up ? y - 9 : y + 14}">${land.name}</text></g>`;
+      const b = bases.find((q) => q.i % LANDS.length === i), [x2, y] = MAP_POS[i], st = b && b.lost ? "todo lost" : b && b.hit ? "done hit" : i < cur ? "done" : i === cur ? "now" : "todo", up = i >= 11 && i % 2 === 1, label = i === cur || i === 0 || i === LANDS.length - 1 || b && b.hit && !b.lost;
+      return `<g class="${st}"><circle cx="${x2}" cy="${y}" r="${i === cur ? 5.5 : 3.2}"/>${i === cur || b && b.hit && !b.lost ? `<circle class="pulse" cx="${x2}" cy="${y}" r="9"/>` : ""}${label ? `<text x="${x2}" y="${up ? y - 9 : y + 14}">${land.name}</text>` : ""}</g>`;
     }).join("");
     return `<svg viewBox="0 0 320 190" role="img" aria-label="\uC815\uBC8C \uC9C0\uB3C4">
     <rect width="320" height="190" fill="#27485a"/>
@@ -14168,7 +14194,12 @@ button:focus-visible {
         LANDS.forEach((land, i) => {
           const now = base + i === info.index, done = base + i < info.index;
           const li = el("div", "jo-rank-row" + (now ? " now" : done ? " done" : ""));
-          li.append(pic("castle_" + i, "jo-castle-pic"), el("b", null, land.name), el("small", null, done ? `\uC810\uB839 \xB7 ${land.castle}` : now ? `\uC2F8\uC6B0\uB294 \uC911 \xB7 ${info.name}` : land.castle));
+          li.append(
+            pic("castle_" + i % 11, "jo-castle-pic"),
+            /* 성 그림은 열한 장을 돌려 쓴다 */
+            el("b", null, land.name),
+            el("small", null, done ? `\uC810\uB839 \xB7 ${land.castle}` : now ? `\uC2F8\uC6B0\uB294 \uC911 \xB7 ${info.name}` : land.castle)
+          );
           const post2 = bases.find((q) => q.i === idx0 + i);
           if (post2) {
             const box = el("div", "jo-base" + (post2.lost ? " lost" : post2.hit ? " hit" : ""));
