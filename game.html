@@ -3975,6 +3975,30 @@ button:focus-visible {
   border: 1px solid #6e8066;
   border-radius: 6px;
 }
+.jo-lt-pick {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin: 6px 0 2px;
+}
+.jo-lt-pick button {
+  min-height: 30px;
+  padding: 4px 10px;
+  font-family: inherit;
+  font-size: 11px;
+  color: var(--c, #cbd6c2);
+  border: 1px solid var(--c, #75856b);
+  border-radius: 15px;
+  background: #ffffff08;
+}
+.jo-lt-pick button.on {
+  color: #10201a;
+  background: var(--c);
+  font-weight: 800;
+}
+.jo-lt-pick button:disabled {
+  opacity: .45;
+}
 
 </style>
 </head>
@@ -7760,7 +7784,7 @@ button:focus-visible {
   }
 
   // src/joseon/lieutenants.js
-  var LT_RANKS = [3, 7];
+  var LT_RANKS = [3, 3];
   var LT_STYLES = {
     van: { name: "\uCC3D\uC7A1\uC774", art: "spear", look: "ltVan", color: "#ff9a5c", desc: "\uC55E\uC5D0\uC11C \uB4E4\uC774\uBC1B\uB294\uB2E4 \u2014 \uBA40\uB9AC\uAE4C\uC9C0 \uCAD3\uACE0 \uACF5\uACA9\uC774 \uC138\uB2E4", hp: 3.2, dmg: 3, skillName: "\uD729\uC4F8\uAE30", skill: "\uD729\uC4F8\uAE30: \uB458\uB808\uC758 \uC65C\uAD70 \uB2E4\uC12F\uC744 \uD06C\uAC8C \uBCA0\uC5B4 \uB0A0\uB9B0\uB2E4", skill2Name: "\uAD00\uD1B5\uCC3D", skill2: "\uAD00\uD1B5\uCC3D: \uC55E\uC73C\uB85C \uAE38\uAC8C \uCC14\uB7EC \uD55C \uC904\uC758 \uC65C\uAD70\uC744 \uAFF0\uB6AB\uB294\uB2E4 (\uACF5\uACA9\uC758 320%)", cd2: 12, skill3Name: "\uD68C\uC624\uB9AC", skill3: "\uD68C\uC624\uB9AC: 1.6\uCD08 \uB3D9\uC548 \uCC3D\uC744 \uB3CC\uB9AC\uBA70 \uB458\uB808\uB97C \uACC4\uC18D \uBCA4\uB2E4 (0.2\uCD08\uB9C8\uB2E4 55%)", cd3: 15, skill4Name: "\uB3C4\uC57D \uAC15\uD0C0", skill4: "\uB3C4\uC57D \uAC15\uD0C0: \uC65C\uAD70\uC774 \uBAB0\uB9B0 \uACF3\uC73C\uB85C \uB6F0\uC5B4\uB4E4\uC5B4 \uB0B4\uB824\uCC0D\uB294\uB2E4 \u2014 \uB458\uB808\uB97C \uB744\uC6B0\uACE0 \uAD73\uD78C\uB2E4 (240%)", cd4: 20, skill5Name: "\uCC9C\uC9C0\uAC1C\uBCBD", skill5: "\uCC9C\uC9C0\uAC1C\uBCBD: \uD558\uB298\uB85C \uC19F\uC558\uB2E4 \uB0B4\uB9AC\uCC0D\uB294\uB2E4 \u2014 \uB113\uC740 \uB458\uB808\uC758 \uC65C\uAD70\uC744 \uBAA8\uB450 \uB744\uC6B4\uB2E4 (500%)", cd5: 40 },
     sword: { name: "\uAC80\uBC29\uD328", art: "shield", look: "ltSword", color: "#ffd35c", desc: "\uCE7C\uACFC \uBC29\uD328 \u2014 \uACE0\uB8E8 \uC138\uACE0, \uBC1B\uB294 \uD53C\uD574 \u221215%", hp: 4, dmg: 2.4, skillName: "\uBC29\uD328\uCE58\uAE30", skill: "\uBC29\uD328\uCE58\uAE30: \uB458\uB808\uC758 \uC65C\uAD70 \uC5EC\uC12F\uC744 \uBCA0\uACE0 \uC7A0\uAE50 \uAD73\uD78C\uB2E4", skill2Name: "\uC5F0\uD658\uBCA0\uAE30", skill2: "\uC5F0\uD658\uBCA0\uAE30: \uAC00\uC7A5 \uC13C \uC801 \uD558\uB098\uB97C \uC138 \uBC88 \uC5F0\uB2EC\uC544 \uBCA4\uB2E4 (150%\uC529) \u2014 \uC7A5\uC218 \uC7A1\uC774", cd2: 10, skill3Name: "\uBC29\uD328 \uB3CC\uC9C4", skill3: "\uBC29\uD328 \uB3CC\uC9C4: \uBC29\uD328\uB97C \uC55E\uC138\uC6CC \uB0B4\uB2EC\uB824 \uAE38 \uC704\uC758 \uC65C\uAD70\uC744 \uCE58\uACE0 1.2\uCD08 \uAD73\uD78C\uB2E4 (180%)", cd3: 12, skill4Name: "\uBC29\uD328 \uB358\uC9C0\uAE30", skill4: "\uBC29\uD328 \uB358\uC9C0\uAE30: \uB358\uC9C4 \uBC29\uD328\uAC00 \uC65C\uAD70 \uB2E4\uC12F \uC0AC\uC774\uB97C \uD280\uC5B4 \uB2E4\uB2CC\uB2E4 (160%\uC529)", cd4: 16, skill5Name: "\uAC80\uBB34", skill5: "\uAC80\uBB34: \uB458\uB808\uC758 \uC65C\uAD70 \uC0AC\uC774\uB97C \uB204\uBE44\uBA70 \uC5F4\uB450 \uBC88 \uBCA4\uB2E4 (140%\uC529)", cd5: 36 },
@@ -9282,6 +9306,7 @@ button:focus-visible {
         }
         if (best && bd < 16 * 16) prey = best;
       }
+      if (this.lt && prey && !rush && (line.depthOf(this.x, this.y) > 1.6 || line.depthOf(prey.x, prey.y) > 3)) prey = null;
       if (prey && ranged && this.distTo(prey) < this.reach - 1) prey = null;
       if (prey) this.moveTo(prey.x - (prey.x - this.x > 0 ? 1 : -1) * this.reach * 0.75, prey.y, this.moveSpeed * 1.15);
       else {
@@ -9311,12 +9336,12 @@ button:focus-visible {
     }
   };
   var LT_PLAN = {
-    van: { chase: 6, fwd: 1, taken: 0.5 },
-    guard: { chase: 4, taken: 0.24 },
+    van: { chase: 3, taken: 0.5 },
+    guard: { chase: 2.5, taken: 0.24 },
     bow: { cd: 0.7, taken: 0.6 },
-    sword: { chase: 5, fwd: 0.5, taken: 0.36 },
+    sword: { chase: 3, taken: 0.36 },
     heal: { chase: 0, fwd: -2.6, taken: 0.38 },
-    horse: { chase: 9, fwd: 1, taken: 0.5 }
+    horse: { chase: 4.5, taken: 0.5 }
   };
   var LT_REST = { chase: 0, fwd: -2.5, taken: 0.4 };
   var Lieutenant = class extends Ally {
@@ -9938,7 +9963,7 @@ button:focus-visible {
   var ROWS = 8;
   var COL_SP = 1.05;
   var ROW_SP = 1;
-  var GAP = 0.9;
+  var GAP = 1.3;
   var BattleLine = class {
     constructor() {
       this.reset(false);
@@ -13405,7 +13430,23 @@ button:focus-visible {
         {
           const lts = d.lts || [], slots = ltSlots(d), box = el("div", "jo-tactic");
           box.appendChild(el("b", null, `\uBD80\uC7A5 ${lts.length}/${LT_CANDS.length}\uBA85 \xB7 \uCD9C\uC804 ${ltOut(d).length}/${slots} \u2014 \uB530\uB85C \uC2F8\uC6B0\uACE0 \uB530\uB85C \uD070\uB2E4`));
-          box.appendChild(el("small", null, `\uC624\uB978\uD314\uC740 ${RANKS[LT_RANKS[0]].name}\uBD80\uD130, \uC67C\uD314\uC740 ${RANKS[LT_RANKS[1]].name}\uBD80\uD130 \uB370\uB9AC\uACE0 \uB098\uAC04\uB2E4. \uC5EC\uC12F\uC744 \uB2E4 \uB9DE\uC544\uB4E4\uC5EC \uB450\uACE0 \uADF8\uB54C\uADF8\uB54C \uB458\uC744 \uACE8\uB77C\uB3C4 \uB41C\uB2E4.`));
+          box.appendChild(el("small", null, `\uC804\uC7A5\uC5D0\uB294 \uB458\uB9CC \uB370\uB9AC\uACE0 \uB098\uAC04\uB2E4(${RANKS[LT_RANKS[0]].name}\uBD80\uD130). \uC5EC\uC12F\uC744 \uB2E4 \uB9DE\uC544\uB4E4\uC5EC \uB450\uACE0 \uBC88\uAC08\uC544 \uACE8\uB77C \uD0A4\uC6B4\uB2E4 \u2014 \uBC14\uAFB8\uBA74 \uB2E4\uC74C \uC804\uC7A5\uBD80\uD130 \uBA39\uB294\uB2E4.`));
+          if (lts.length) {
+            const pick = el("div", "jo-lt-pick");
+            for (const l of lts) {
+              const S0 = LT_STYLES[l.style], posted = l.post != null, b = el("button", l.out && !posted ? "on" : null, `${l.name} \xB7 ${S0.name} Lv ${l.lv}${posted ? " (\uC8FC\uB454)" : ""}`);
+              b.style.setProperty("--c", S0.color);
+              b.disabled = posted;
+              b.addEventListener("click", () => {
+                if (api.lt.field(l.id, !l.out)) {
+                  sfx("click", 0.7, 0);
+                  rebuild();
+                } else bagToast(`\uCD9C\uC804\uC740 ${slots}\uBA85\uAE4C\uC9C0 \u2014 \uBA3C\uC800 \uD55C \uBA85\uC744 \uBE7C\uB77C`, 2);
+              });
+              pick.appendChild(b);
+            }
+            box.appendChild(pick);
+          }
           for (const l of lts) {
             const S0 = LT_STYLES[l.style], m = ltMul(d, l), card = el("div", "jo-lt");
             const w = d.inventory.find((i) => i.id === l.gear.weapon), a = d.inventory.find((i) => i.id === l.gear.armor), posted = l.post != null ? LANDS[l.post % LANDS.length].name : null;
@@ -14690,8 +14731,13 @@ button:focus-visible {
       g.fillStyle = "rgba(20,24,20,0.28)";
       g.fill();
       if (u !== S.player) {
-        g.strokeStyle = u.team === "J" ? "rgba(112,187,196,0.6)" : "rgba(188,93,64,0.5)";
-        g.lineWidth = 0.035 * px;
+        const mine = u.team === "J";
+        g.beginPath();
+        g.ellipse(x, y, 0.5 * s * px, 0.21 * s * px, 0, 0, Math.PI * 2);
+        g.fillStyle = mine ? "rgba(60,160,235,0.42)" : "rgba(235,60,40,0.42)";
+        g.fill();
+        g.strokeStyle = mine ? "rgba(150,215,255,0.95)" : "rgba(255,120,95,0.95)";
+        g.lineWidth = 0.055 * px;
         g.stroke();
         return;
       }
@@ -14786,7 +14832,7 @@ button:focus-visible {
       const s = u.scale, w = 0.72 * s * px, h = Math.max(3, 0.09 * px), x = sx(u.x) - w / 2, y = sy(u.y + (BODY - 0.42) * s);
       g.fillStyle = "rgba(0,0,0,0.78)";
       g.fillRect(x - 1.5, y - 1.5, w + 3, h + 3);
-      g.fillStyle = u.team === "J" ? "#82b5b7" : "#cc7859";
+      g.fillStyle = u.team === "J" ? "#5cc4ff" : "#ff5a48";
       g.fillRect(x, y, Math.max(1, w * u.hp / u.maxHp), h);
     }
     function drawProp(spr, x, y, sx, sy, k) {
